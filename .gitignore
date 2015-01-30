@@ -1,0 +1,14 @@
+*~
+.~*
+*.vim
+*.bak
+*.swp
+*.tex
+*.aux
+*.log
+*.out
+*.pdf
+*.php
+*.directory
+ttt/*
+backend/*
