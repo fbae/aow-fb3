@@ -16,9 +16,9 @@ require.config( {
 		'jquery': 'vendor/jquery-2.1.3.min',
 		'jqueryMobile': 'vendor/jquery.mobile-1.4.5.min',
 		'parseURL': 'vendor/purl',
-		'text':'vendor/text', //require text-Plugin
-		'underscore': 'vendor/underscore-1.7.0.min',
-		'backbone': 'vendor/backbone-1.1.2.min'
+		'text':'vendor/text-2.0.12', //require text-Plugin
+		'underscore': 'vendor/underscore-min', // 1.7.0
+		'backbone': 'vendor/backbone-min'// 1.1.2
 	},
 	// Sets the configuration for your third party scripts that are not AMD compatible
 	shim: {
@@ -42,12 +42,13 @@ require(['jquery','backbone'], function( $, Backbone ) {
 
 	if ( !window.indexedDB ) {
 		// Fehlermeldung anzeigen und nichts ausführen
-		require( [ "jquerymobile" ], function() {
+		require( [ "jqueryMobile" ], function() {
 			$.mobile.changePage( '#Fehler' , { reverse: false, changeHash: false } );
 		});
-	} /* else 
+	} else 
  		// das Programm starten	
-		require(['router','fb2Model'], function( Fb2Router, Fb2 ) {
+		require(['router','model'], function( Router, Model ) {
+			console.info('router und model laden');
 
 			function twoDigits(d) {
 				if(0 <= d && d < 10) return "0" + d.toString();
@@ -74,9 +75,11 @@ require(['jquery','backbone'], function( $, Backbone ) {
 				}
 			);
 			
-			require( [ "jquerymobile", 'parseURL' ], function() {
-				this.router = new Fb2Router();
-				fb2.router = this.router;
+			require( [ "jqueryMobile", 'parseURL' ], function() {
+				console.info("router instanzieren");
+				this.router = new Router();
+				fb3.router = this.router;
+				console.info("router instanzieren - fertig");
 
 				// indexedDB - Fehler anzeigen falls nicht definiert ist.
 				if ( !window.indexedDB ) {
@@ -86,7 +89,7 @@ require(['jquery','backbone'], function( $, Backbone ) {
 
 				// GeräteNamen setzen, falls in url übergeben wurde
 				var device = $.url().param('device');
-				if (device) fb2.set({'device':device});
+				if (device) fb3.set({'device':device});
 
 				// StartTag und StartZeit setzten, falls welche übergeben wurden
 				var tagS = $.url().param('st');
@@ -95,26 +98,25 @@ require(['jquery','backbone'], function( $, Backbone ) {
 				if (tagS !== undefined) { // TODO: testen
 					var tagA = tagS.split('-');
 					var sT = new Date(parseInt(tagA[0]),parseInt(tagA[1])-1,parseInt(tagA[2]));
-					if (!zeitS) fb2.set({'tag': sT});
+					if (!zeitS) fb3.set({'tag': sT});
 				}
 
 				if (zeitS) { // TODO: testen
 					var zeitA = zeitS.split(':');
 					var zeitStd = parseInt(zeitA[0]);
 					var zeitMin = parseInt(zeitA[1]);
-					if (!sT) var sT = fb2.get('tag');
+					if (!sT) var sT = fb3.get('tag');
 					sT.setHours(zeitStd);
 					sT.setMinutes(zeitMin);
-					fb2.set({'tag': sT});
+					fb3.set({'tag': sT});
 				}
 
 				// Versuchsperson setzen, falls in url übergeben
 				var vpn = $.url().param('vpn');
 				if (vpn) {
-					fb2.set({'person':vpn});
+					fb3.set({'person':vpn});
 				}
 		
 			}); // require jquerymobile
 		}); // require router
-		*/
 }); // require jquery
