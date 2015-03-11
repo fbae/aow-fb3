@@ -16,14 +16,14 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 
 			var self= this;
 			var openRequest = indexedDB.open(this.dbName,this.dbVersion);
-			
+
 			openRequest.onsuccess = function(e) {
 				self.db = e.target.result;
 				self.db.onerror = function(e) {
 					// Fehler steigen auf - wird aus allen requests für alle auftauchenden Fehler abgerufen
 					console.error('Fehler - indexedDB: ', e, 'Message:', e.target.error.message);
 				};
-//console.debug( 'open1');				
+//console.debug( 'open1');
 				// laden der Informationen aus der Datenbank und Abspeichern im Fb3Model
 				var req = self.db.transaction('einstellungen').objectStore('einstellungen').openCursor();
 //console.debug( 'open2');
@@ -54,7 +54,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 						if ( !self.has('schichtbeginn')) {
 							self.set({'schichtbeginn': self.naechsterWerktag()});
 							self.log({
-								msg: 'schichtbeginn nicht vorhanden - neu bestimmt', 
+								msg: 'schichtbeginn nicht vorhanden - neu bestimmt',
 								schichtbeginn: self.get('schichtbeginn')
 							});
 						} else {
@@ -64,7 +64,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 								sb.setDate(sb.getDate()+anzTageDiff);
 								self.set('schichtbeginn',sb);
 								self.log({
-									msg: 'schichtbeginn - neu berechnet', 
+									msg: 'schichtbeginn - neu berechnet',
 									schichtbeginn: self.get('schichtbeginn')
 								});
 							}
@@ -72,11 +72,11 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 						// Art setzen, falls noch nicht erfolgt ist
 						if (!fb3.has('art')) fb3.set('art', Boolean(Math.abs(this.anzHeute % 2)));
 //console.debug( 'open3');
-						
+
 						// gibt es nicht beendete Antworten, die eventuell passen könnten?
 						if ( self.has('antwortenTabelle') && self.has('antwortenId')) {
 	/*
-	 * 					// Es sind Antworten noch nicht abgeschlossen, 
+	 * 					// Es sind Antworten noch nicht abgeschlossen,
 							// aber die Antworten könnten eventuell auch verfallen sein.
 							// Nach 24 Stunden verfallen solche Antworten
 							// TODO - das muss noch programmiert werden
@@ -147,7 +147,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 			// initialisiere die Programm-Variablen ==================================
 			this.set('status','debug');
 			this.set('version','0.1');
-			if ((this.get('status') == 'debug') && this.db) 
+			if ((this.get('status') == 'debug') && this.db)
 				//TODO tritt nicht ein, weil so früh this.db noch nicht zur Verfügung steht
 				this.db.transaction('log','readwrite').objectStore('log').clear();
 
@@ -185,7 +185,7 @@ console.debug('setzeAntwort', antwortO);
 
 			// Eintrag in Collection: fragen
 			this.fragen.setzeAntwort(antwortO);
-		},	
+		},
 
 		log: function(obj) {
 			if (!this.db) {
@@ -203,8 +203,8 @@ console.debug('setzeAntwort', antwortO);
 			}
 			if (!logO.heuteId) logO.heuteId = this.heuteId();
 
-			this.db.transaction('log', 'readwrite').objectStore('log').add(logO).onerror = function (e) { 
-				console.warn('IDB - log -  mit obj: ',obj, ' Fehler: ',e); 
+			this.db.transaction('log', 'readwrite').objectStore('log').add(logO).onerror = function (e) {
+				console.warn('IDB - log -  mit obj: ',obj, ' Fehler: ',e);
 			};
 
 			if (this.get('status') == 'debug') console.debug('log: ' + logO.msg);
@@ -280,7 +280,7 @@ console.debug('setzeAntwort', antwortO);
 				var cursor = e.target.result;
 				if (cursor) {
 					var cv = _.clone(cursor.value);
-					_.each(cv, function(v,k,l) { 
+					_.each(cv, function(v,k,l) {
 						if (_.isDate(v)) {
 							// Datum formatieren
 							l[k] = v.toMysqlFormat();
@@ -311,11 +311,11 @@ console.debug('setzeAntwort', antwortO);
 						},
 						url: 'api/putData.php',
 						success: function(data) {
-							if (data.status == 'erfolg') { 
+							if (data.status == 'erfolg') {
 								/* löschen des Eintrages, falls data.status == erfolg
 								 * data enthält die id und den tabellenNamen
 								 */
-								self.db.transaction(tabName,'readwrite').objectStore(tabName).delete(Number(data.id)).onerror = 
+								self.db.transaction(tabName,'readwrite').objectStore(tabName).delete(Number(data.id)).onerror =
 									function(e) {
 										errors.push({e:tabName, msg:'saveTab - Eintrag id:'+data.id+' konnte nicht gelöscht werden'});
 									};
@@ -349,9 +349,9 @@ console.debug('setzeAntwort', antwortO);
 			// alle log-Einträge zusammenpacken und verschicken
 			var log = new Array();
 			var req = self.db.transaction('log').objectStore('log').openCursor();
-			req.onerror = function(e) { 
+			req.onerror = function(e) {
 				errA.push({e:'log', msg:'saveAll - log konnte nicht ausgelesen werden'});
-				console.warn('Fehler - saveAll - log konnte icht ausgelesen werden. ',e); 
+				console.warn('Fehler - saveAll - log konnte icht ausgelesen werden. ',e);
 			}
 			req.onsuccess = function(e) {
 				var cursor = e.target.result;
@@ -380,7 +380,7 @@ console.debug('setzeAntwort', antwortO);
 						},
 						url: 'api/putData.php',
 						success: function(data) {
-							if (data.status == 'erfolg') { 
+							if (data.status == 'erfolg') {
 								/* löschen des Eintrages, falls data.status == erfolg
 								 * data enthält die id und den tabellenNamen
 								 */
@@ -408,7 +408,7 @@ console.debug('setzeAntwort', antwortO);
 							console.error('Fehler - saveLog - ajax ist gescheitert. data:',data);
 						}
 					});
-					
+
 				}
 			}
 
@@ -438,10 +438,10 @@ console.debug('setzeAntwort', antwortO);
 				var naechsterWochentag = this.get('schichtbeginn');
 			else if (this.has('tag'))
 				var naechsterWochentag = this.get('tag');
-			else 
+			else
 				var naechsterWochentag = jetzt;
-			while (naechsterWochentag <= jetzt || 
-						naechsterWochentag.getDay() < 1 || 
+			while (naechsterWochentag <= jetzt ||
+						naechsterWochentag.getDay() < 1 ||
 						naechsterWochentag.getDay() > 5)
 				naechsterWochentag.setDate(naechsterWochentag.getDate()+1);
 			return naechsterWochentag;
@@ -465,16 +465,16 @@ console.debug('setzeAntwort', antwortO);
 			var self = this;
 			self.set({count:0},{silent:true});
 			var tran = self.db.transaction(['antwortenM','antwortenW','antwortenN','antwortenA']);
-			tran.objectStore('antwortenM').count().onsuccess = function(e) { 
+			tran.objectStore('antwortenM').count().onsuccess = function(e) {
 				self.set('count', self.get('count') + e.target.result);
 			};
-			tran.objectStore('antwortenW').count().onsuccess = function(e) { 
+			tran.objectStore('antwortenW').count().onsuccess = function(e) {
 				self.set('count', self.get('count') + e.target.result);
 			};
-			tran.objectStore('antwortenN').count().onsuccess = function(e) { 
+			tran.objectStore('antwortenN').count().onsuccess = function(e) {
 				self.set('count', self.get('count') + e.target.result);
 			};
-			tran.objectStore('antwortenA').count().onsuccess = function(e) { 
+			tran.objectStore('antwortenA').count().onsuccess = function(e) {
 				self.set('count', self.get('count') + e.target.result);
 			};
 		}
@@ -542,7 +542,7 @@ console.debug('setzeAntwort', antwortO);
 			'key': 'schichtbeginn',
 			'value': sb
 		} ).onsuccess = function() {
-			if (fb3 && fb3.router && fb3.router.hasOwnProperty('settingsView')) 
+			if (fb3 && fb3.router && fb3.router.hasOwnProperty('settingsView'))
 				fb3.router.settingsView.$el.find('#sb').html(sb.toGerman())
 			else
 				console.warn("Schichtbeginn konnte noch nicht in settingsView eingetragen werden.", fb3);
@@ -556,8 +556,8 @@ console.debug('setzeAntwort', antwortO);
 	}),
 	fb3.on('change:antwortenId', function(model, aI) {
 		if (this.has('antwortenId')) {
-			this.db.transaction('einstellungen','readwrite').objectStore('einstellungen').put( { 
-				'key': 'antwortenId', 
+			this.db.transaction('einstellungen','readwrite').objectStore('einstellungen').put( {
+				'key': 'antwortenId',
 				'value': aI } ).onerror = function() {
 					console.warn( 'IDB - change:antwortenId - Fehler beim Schreiben der Einstellungen');
 				}
@@ -567,8 +567,8 @@ console.debug('setzeAntwort', antwortO);
 	});
 	fb3.on('change:antwortenTabelle', function(model, aT) {
 		if (this.has('antwortenTabelle')) {
-			this.db.transaction('einstellungen','readwrite').objectStore('einstellungen').put( { 
-				'key': 'antwortenTabelle', 
+			this.db.transaction('einstellungen','readwrite').objectStore('einstellungen').put( {
+				'key': 'antwortenTabelle',
 				'value': aT } ).onerror = function() {
 					console.warn( 'IDB - change:antwortenTabelle - Fehler beim Schreiben der Einstellungen');
 				}

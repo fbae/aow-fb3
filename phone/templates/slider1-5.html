@@ -1,5 +1,5 @@
-<div data-role='fieldcontain' data-theme='a' class='slider1-20'>
-	<label for='<% kodierung %>'>
+<div data-role='fieldcontain' data-theme='a' class='slider1-5'>
+	<label for='<%= kodierung %>'>
 		<div class='frage'><%= txt %></div>
 		<% if (lTxt != null) { print("<div class='linkeBeschriftung'>"+lTxt+"</div>"); } %>
 		<% if (rTxt != null) { print("<div class='rechteBeschriftung'>"+rTxt+"</div>"); } %>
@@ -7,5 +7,5 @@
 	</label>
 	<input data-type='range' name='<%= kodierung %>' id='<%= kodierung %>'
 		value='<% print((ant == null) ? 0 : ant) %>'
-		min='1' max='20' data-highlight='true' data-theme='a'/>
+		min='1' max='5' data-highlight='true' data-theme='a'/>
 </div>

@@ -30,11 +30,11 @@ define( function( require ) {
 				.find('option[value="'+self.se.getMinutes()+'"]').attr('selected','selected');
 
 			this.$el.find('#seZeitEintragen').click(function(evt) {
-				if (fb2.has('antworten')) {
-					var data = fb2.get('antworten');
+				if (fb3.has('antworten')) {
+					var data = fb3.get('antworten');
 					data['schichtende'] = { 'zeit': new Date(event.timeStamp), 'antw': self.se.toMysqlFormat() }; 
-					fb2.set( {'antworten': data} );
-					fb2.trigger('change:antworten',fb2,data);
+					fb3.set( {'antworten': data} );
+					fb3.trigger('change:antworten',fb3,data);
 				};
 			});
 

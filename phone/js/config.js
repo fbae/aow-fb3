@@ -45,8 +45,8 @@ require(['jquery','backbone'], function( $, Backbone ) {
 		require( [ "jqueryMobile" ], function() {
 			$.mobile.changePage( '#Fehler' , { reverse: false, changeHash: false } );
 		});
-	} else 
- 		// das Programm starten	
+	} else
+ 		// das Programm starten
 		require(['router','model'], function( Router, Model ) {
 			console.info('router und model laden');
 
@@ -56,14 +56,14 @@ require(['jquery','backbone'], function( $, Backbone ) {
 				return d.toString();
 			}
 			Date.prototype.toMysqlFormat = function() {
-				return this.getUTCFullYear() + "-" + twoDigits(1 + this.getUTCMonth()) + "-" + 
-					twoDigits(this.getUTCDate()) + " " + twoDigits(this.getUTCHours()) + ":" + 
+				return this.getUTCFullYear() + "-" + twoDigits(1 + this.getUTCMonth()) + "-" +
+					twoDigits(this.getUTCDate()) + " " + twoDigits(this.getUTCHours()) + ":" +
 					twoDigits(this.getUTCMinutes()) + ":" + twoDigits(this.getUTCSeconds());
 			};
 			Date.prototype.toGerman = function() {
 				return this.getDate() + '.' + (1 + this.getMonth()) + "." + this.getFullYear() +
 					 " " + this.getHours() + ":" + this.getMinutes();
-				
+
 			}
 
 			$( document ).on( "mobileinit",
@@ -74,7 +74,7 @@ require(['jquery','backbone'], function( $, Backbone ) {
 					$.mobile.hashListeningEnabled = false;
 				}
 			);
-			
+
 			require( [ "jqueryMobile", 'parseURL' ], function() {
 				console.info("router instanzieren");
 				this.router = new Router();
@@ -116,7 +116,7 @@ require(['jquery','backbone'], function( $, Backbone ) {
 				if (vpn) {
 					fb3.set({'person':vpn});
 				}
-		
+
 			}); // require jquerymobile
 		}); // require router
 }); // require jquery

@@ -5,7 +5,8 @@
 // Includes file dependencies
 define(function(require) {
 	var $ = require('jquery');																				// art
-	var mtTemplate = require('text!../templates/mt.html');						// 1 - beschriftete Buttons beliebiger Anzahl - zugeordnete Werte
+	var mtTemplate = require('text!../templates/mtView.html');				// 1 - beschriftete Buttons beliebiger Anzahl - zugeordnete Werte - eine pro Seite
+	var s5Template = require('text!../templates/slider1-5.html');			// 5 - Slider von 1-5 - mehrere pro Seite
 /*
  * var frage4Template = require('text!../templates/frage4.html');
 	var frage5Template = require('text!../templates/frage5.html');
@@ -24,7 +25,7 @@ define(function(require) {
 	 *	obj.txt				:	String		- die Fragestellung
 	 *	obj.[lrm]Txt	:	String		- zusätzliche Anmerkungen neben der Antwort
 	 *	obj.bes				: Array	of Arrays
-	 *														- im Falle der Vorlage mt.html, die Beschriftung der Buttons mit den 
+	 *														- im Falle der Vorlage mt.html, die Beschriftung der Buttons mit den
 	 *															zugeordneten Werten [Frage,Wert]
 	 */
 	function Frage(obj) {
@@ -45,14 +46,16 @@ define(function(require) {
 			if (!this.tpl) {
 				switch (this.art) {
 					case  1: this.tpl = mtTemplate; break;
-//TODO					case  3: this.tpl = mt5bTemplate; break;
+					case  5: this.tpl = s5Template; break;
+/*
 					case  4: this.tpl = frage4Template; break;
 					case  7: this.tpl = frage7Template; break;
 					case 11: this.tpl = s11Template; break;
 					case 20: this.tpl = s20Template; break;
 					case 24: this.tpl = s24Template; break;
 					case 49: this.tpl = s49Template; ;break;
-					default: this.tpl = frage5Template;  
+*/
+					default: this.tpl = s5Template;
 				}
 			}
 			return this.tpl;

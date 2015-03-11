@@ -5,10 +5,9 @@ define(function(require) {
 	var $ = require('jquery');
 	var _ = require('underscore');
 	var Backbone = require('backbone');
-	var liTemplate = require('text!../../templates/mtLi.html');
 
 	var MtView = Backbone.View.extend( {
-		el: '#f', 
+		el: '#f',
 
 		initialize: function() {
 			this.$el.off('click','a.mtAntwort');
@@ -30,9 +29,9 @@ define(function(require) {
 		},
 
 		antwort: function(evt) {
-			fb2.setzeAntwort({
-				'kodierung': this.fO.kodierung, 
-				'zeit': new Date(),	
+			fb3.setzeAntwort({
+				'kodierung': this.fO.kodierung,
+				'zeit': new Date(),
 				'antw': evt.target.attributes['data-value'].value
 			});
 		},
@@ -42,7 +41,7 @@ define(function(require) {
 			this.template = _.template(this.frage.attributes.template)(this.fO);
 			// HTML in DOM einhängen und mit page() jqm die Seite verbessert
 			this.$el.html(this.template);
-			this.$el.find( ":jqmData(role=listview)" ).listview(); // jqm verbessern 
+			this.$el.find( ":jqmData(role=listview)" ).listview(); // jqm verbessern
 			this.$el.page();
 			// verbessern: http://jquerymobile.com/demos/1.2.0/docs/pages/page-dynamic.html
 

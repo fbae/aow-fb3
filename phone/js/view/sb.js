@@ -16,37 +16,37 @@ define( function( require ) {
 		},
 
 		render: function() {
-			var sb = fb2.naechsterWerktag();
+			var sb = fb3.naechsterWerktag();
 			this.$el.html(this.template).page();
 
 			// Werte für nächsten Schichtbeginn vorbesetzen
 			this.$el.find('#select-choice-day')
 				.change(function(evt) {
 					sb.setDate(evt.target.value);
-					fb2.set('schichtbeginn',sb);
-					fb2.trigger('change:schichtbeginn',fb2,sb);
+					fb3.set('schichtbeginn',sb);
+					fb3.trigger('change:schichtbeginn',fb3,sb);
 				})
 				.find('option[value="'+sb.getDate()+'"]').attr('selected','selected');
 			this.$el.find('#select-choice-month')
 				.change(function(evt) {
 					sb.setMonth(evt.target.value);
-					fb2.set('schichtbeginn',sb);
-					fb2.trigger('change:schichtbeginn',fb2,sb);
+					fb3.set('schichtbeginn',sb);
+					fb3.trigger('change:schichtbeginn',fb3,sb);
 				})
 				.find('option[value="'+sb.getMonth()+'"]').attr('selected','selected');
 			this.$el.find('#select-choice-year')
 				.change(function(evt) {
 					sb.setFullYear(evt.target.value);
-					fb2.set('schichtbeginn',sb);
-					fb2.trigger('change:schichtbeginn',fb2,sb);
+					fb3.set('schichtbeginn',sb);
+					fb3.trigger('change:schichtbeginn',fb3,sb);
 				})
 				.find('option[value="'+sb.getFullYear()+'"]').attr('selected','selected');
 			
 			this.$el.find('#select-choice-hour')
 				.change(function(evt) {
 					sb.setHours(evt.target.value);
-					fb2.set('schichtbeginn',sb);
-					fb2.trigger('change:schichtbeginn',fb2,sb);
+					fb3.set('schichtbeginn',sb);
+					fb3.trigger('change:schichtbeginn',fb3,sb);
 				})
 				.find('option[value="'+sb.getHours()+'"]').attr('selected','selected');
 			var q = Math.round(sb.getMinutes()/15);
@@ -54,8 +54,8 @@ define( function( require ) {
 			this.$el.find('#select-choice-quarter')
 				.change(function(evt) {
 					sb.setMinutes(evt.target.value);
-					fb2.set('schichtbeginn',sb);
-					fb2.trigger('change:schichtbeginn',fb2,sb);
+					fb3.set('schichtbeginn',sb);
+					fb3.trigger('change:schichtbeginn',fb3,sb);
 				})
 				.find('option[value="'+q+'"]').attr('selected','selected');
 			this.$el.page().find('select').selectmenu();

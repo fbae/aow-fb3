@@ -28,7 +28,7 @@ define( function( require) {
 			'A': 'ablaufA',
 
 			// When #f? is on the url, the  method is called
-//TODO			'f?:nr': 'frage'
+			'f?:nr': 'frage'
 		},
 
 		home: function() {
@@ -40,7 +40,7 @@ define( function( require) {
 			fb3.log({
 				msg:'speichern nach Durchlauf ' + this.fragen.art,
 				data: antw
-			}); 
+			});
 			fb3.speichereAntworten(); // solange change:antworten nicht richtig funktioniert - mit callback?
 
 			this.fragen.typ = 'O';
@@ -83,7 +83,7 @@ define( function( require) {
 				this.fragen.akt = nr;
 			} else {
 				if (this.fragen.akt + 1 < this.fragen.anzahl()) this.fragen.akt++;
-				console.info( 'Fehler: der übergebene Parameter Nummer: ' + nr + 
+				console.info( 'Fehler: der übergebene Parameter Nummer: ' + nr +
 						' passt nicht. Es wird versucht die nächste Frage zu wählen');
 			}
 //			console.info( 'frage fragen:',this.fragen);
