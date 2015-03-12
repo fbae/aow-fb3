@@ -269,9 +269,12 @@ define(function( require ) {
 				{v:MtView, f:['PSQI4']}
 				],
 				STI:[
-					{v: MsgView, msg:'Wie fühlen Sie sich gerade?<br/><br/>Antwortmöglichkeiten:<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>' },
 				{v:FView,  f:['NA1','SE1','PAVI1','NA2'], heading:'Wie fühlen Sie sich gerade?<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>'},
-
+				{v:FView,  f:['SE2', 'PA2', 'TI1', 'VI2'], heading:'Wie fühlen Sie sich gerade?<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>'},
+				{v:FView,  f:['NA3', 'SE3', 'PA2', 'TI2'], heading:'Wie fühlen Sie sich gerade?<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>'},
+				{v:FView,  f:['NA5', 'VI3', 'NA4', 'PA4'], heading:'Wie fühlen Sie sich gerade?<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>'},
+				{v:FView,  f:['VI4', 'PA5', 'NA6', 'PA6'], heading:'Wie fühlen Sie sich gerade?<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>'},
+				{v:FView,  f:['TI3'], heading:'Wie fühlen Sie sich gerade?<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>'}
 				]
 			};
 
