@@ -41,27 +41,27 @@ define(function( require ) {
 			// Fragen
 
 			//Heading: 'Wie fühlen Sie sich gerade?'
-			this.add(new Frage({id:'NA1', art:5, txt:'Bekümmert', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'SE1', art:5, txt:'Entspannt', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'PAVI1', art:5, txt:'Aktiv', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'NA2', art:5, txt:'Verärgert', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'SE2', art:5, txt:'Gelassen', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'PA2', art:5, txt:'Interessiert', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'TI1', art:5, txt:'Erschöpft', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'VI2', art:5, txt:'Energiegeladen', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'NA3', art:5, txt:'Gereizt', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'SE3', art:5, txt:'Ruhig', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'PA2', art:5, txt:'Freudig erregt', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'TI2', art:5, txt:'Ermattet', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'NA5', art:5, txt:'Durcheinander', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'VI3', art:5, txt:'Munter', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'NA4', art:5, txt:'Nervös', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'PA4', art:5, txt:'Stark', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'VI4', art:5, txt:'Tatkräftig', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'PA5', art:5, txt:'Angeregt', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'NA6', art:5, txt:'Ängstlich', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'PA6', art:5, txt:'Wach', lTxt:'gar nicht', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'TI3', art:5, txt:'Entkräftet', lTxt:'gar nicht', rTxt:'sehr stark'}));
+			this.add(new Frage({id:'NA1', art:5, txt:'Bekümmert'}));
+			this.add(new Frage({id:'SE1', art:5, txt:'Entspannt'}));
+			this.add(new Frage({id:'PAVI1', art:5, txt:'Aktiv'}));
+			this.add(new Frage({id:'NA2', art:5, txt:'Verärgert'}));
+			this.add(new Frage({id:'SE2', art:5, txt:'Gelassen'}));
+			this.add(new Frage({id:'PA2', art:5, txt:'Interessiert'}));
+			this.add(new Frage({id:'TI1', art:5, txt:'Erschöpft'}));
+			this.add(new Frage({id:'VI2', art:5, txt:'Energiegeladen'}));
+			this.add(new Frage({id:'NA3', art:5, txt:'Gereizt'}));
+			this.add(new Frage({id:'SE3', art:5, txt:'Ruhig'}));
+			this.add(new Frage({id:'PA2', art:5, txt:'Freudig erregt'}));
+			this.add(new Frage({id:'TI2', art:5, txt:'Ermattet'}));
+			this.add(new Frage({id:'NA5', art:5, txt:'Durcheinander'}));
+			this.add(new Frage({id:'VI3', art:5, txt:'Munter'}));
+			this.add(new Frage({id:'NA4', art:5, txt:'Nervös'}));
+			this.add(new Frage({id:'PA4', art:5, txt:'Stark'}));
+			this.add(new Frage({id:'VI4', art:5, txt:'Tatkräftig'}));
+			this.add(new Frage({id:'PA5', art:5, txt:'Angeregt'}));
+			this.add(new Frage({id:'NA6', art:5, txt:'Ängstlich'}));
+			this.add(new Frage({id:'PA6', art:5, txt:'Wach'}));
+			this.add(new Frage({id:'TI3', art:5, txt:'Entkräftet'}));
 			
 			this.add(new Frage({id:'PSQI4', art:1, 
 				txt: 'Wie viele Stunden haben Sie tatsächlich geschlafen?<br/>(Dies kann von der Zeit, die Sie im Bett verbracht haben, abweichen.)',
