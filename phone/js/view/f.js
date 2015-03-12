@@ -10,6 +10,26 @@ define( function( require ) {
 	var FView = Backbone.View.extend( {
 		el: '#f',
 		initialize: function() {
+			var thisEl = this.$el;
+			thisEl
+				.off('pageshow')
+				.on('pageshow',
+						function(evt){
+							var slider = thisEl.find( 'div.ui-slider div' );
+							if (slider && slider.width() > 0) {
+								var sliderHandle = thisEl.find( '.ui-slider-handle');
+								var sliderLinks = sliderHandle.offset().left - sliderHandle.width()/2;
+								var sliderBreite = thisEl.width() - sliderLinks - 2;
+								var erkl	 = thisEl.find( 'div.erkl' );
+								if (erkl) {
+									erkl.width(sliderBreite);
+									var erklSpan = erkl.find('span');
+									erklSpan.css('width', Math.max(20,(erkl.width()/erklSpan.length - 4)));
+									//TODO: könnte auch zu viel Text sein, dann sollte der 3. Eintrag oder gar der 2. und 4. Eintrag entfernt werden
+								}
+								thisEl.find( '.linkeBeschriftung' ).css('margin-left',sliderLinks);
+							}
+						});
 		},
 
 		render: function() {
@@ -35,9 +55,9 @@ define( function( require ) {
 			// vorherige und nachfolgende Frage für Verlinkung bestimmen
 			fO.next = f.nachher();
 			fO.prev = f.vorher();
-console.debug('f.js: f.ablauf[f.typ][f.akt]', f.ablauf[f.typ][f.akt]);
+//console.debug('f.js: f.ablauf[f.typ][f.akt]', f.ablauf[f.typ][f.akt]);
 			fO.heading = (f.ablauf[f.typ][f.akt]['heading']) ? f.ablauf[f.typ][f.akt]['heading'] : null;
-console.debug('f.js: fO',fO);
+//console.debug('f.js: fO',fO);
 
 			// Template rendern
 			this.template = _.template(fViewTemplate)(fO);
@@ -74,19 +94,6 @@ console.debug('f.js: fO',fO);
 			this.$el.find( ':jqmData(role=controlgroup)' ).controlgroup();
 			this.$el.page();
 
-			var self = this;
-			setTimeout(function(){
-				// Erklärung für die Slider - CSS überarbeiten
-				var slider = self.$el.find( 'div.ui-slider div' );
-				var erkl	 = self.$el.find( 'div.erkl' );
-				if (slider && erkl) {
-					var w = slider.width() + 36;
-					var erklAnz = erkl.find('span').length;
-					erkl.width(w);
-					erkl.find( 'span' ).css('width', (w - erklAnz*4)/erklAnz);
-					//TODO: könnte auch zu viel Text sein, dann sollte der 3. Eintrag oder gar der 2. und 4. Eintrag entfernt werden
-				}
-			},500);
 
 
 			// Maintains chainability

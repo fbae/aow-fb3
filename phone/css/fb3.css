@@ -1,10 +1,29 @@
+.frage {
+}
+.linkeBeschriftung {
+	position:relative;
+	float:left;
+	font-size:smaller;
+}
+.rechteBeschriftung {
+	position:relative;
+	float:right;
+	font-size:smaller;
+}
+.heading {
+	padding-bottom:1em;
+}
+.Nachricht{
+	padding:1em;
+	font-size:larger;
+}
 .erkl {
 	margin:0;
 	padding:0;
 	position:relative;
 	float:right;
-	width:500px;
 	text-align:center;
+	font-size:smaller;
 }
 .erkl span {
 	display:inline-block;

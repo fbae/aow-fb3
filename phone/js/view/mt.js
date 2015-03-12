@@ -10,7 +10,7 @@ define(function(require) {
 		el: '#f',
 
 		initialize: function() {
-			this.$el.off('click','a.mtAntwort');
+			this.$el.off('click','a.mtAntwort').off('pageshow');
 			var f = this.collection; // Fragen
 			// aktuelle Frage ermitteln
 			var ablauf = f.ablauf[f.typ][f.akt];
