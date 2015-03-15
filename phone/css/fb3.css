@@ -4,11 +4,18 @@
 	position:relative;
 	float:left;
 	font-size:smaller;
+	max-width:50%;
+}
+.mittlereBeschriftung{
+	font-size:smaller;
+	text-align:center;
 }
 .rechteBeschriftung {
 	position:relative;
 	float:right;
 	font-size:smaller;
+	max-width:50%;
+	text-align:right;
 }
 .heading {
 	padding-bottom:1em;
@@ -28,4 +35,23 @@
 .erkl span {
 	display:inline-block;
 	width:19%;
+}
+// Smileys
+div.smiley5fc {}
+div.smiley5btn {
+	background-repeat:no-repeat;
+	background-position:center;
+	min-height:29px;
+}
+div.smiley5btn label {
+	min-width:22px;
+}
+div.smiley7fc {}
+div.smiley7btn {
+	background-repeat:no-repeat;
+	background-position:center;
+	min-height:18px;
+}
+div.smiley7btn label {
+	min-width:8px;
 }

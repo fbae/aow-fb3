@@ -7,16 +7,12 @@ define(function(require) {
 	var $ = require('jquery');																				// art
 	var mtTemplate = require('text!../templates/mtView.html');				// 1 - beschriftete Buttons beliebiger Anzahl - zugeordnete Werte - eine pro Seite
 	var s5Template = require('text!../templates/slider1-5.html');			// 5 - Slider von 1-5 - mehrere pro Seite
-/*
- * var frage4Template = require('text!../templates/frage4.html');
-	var frage5Template = require('text!../templates/frage5.html');
-	var frage7Template = require('text!../templates/frage7.html');
-	var s11Template = require('text!../templates/slider0-10_15.html');
-	var s20Template = require('text!../templates/slider1-20.html');
-	var s24Template = require('text!../templates/slider0-24_15.html');
-	var s49Template = require('text!../templates/slider0-12_15.html');
-//TODO	var mt5bTemplate = require('text!../templates/mt5B.html');
-*/
+	var s7Template = require('text!../templates/slider1-7.html');			// 7 - Slider von 1-7 - mehrere pro Seite
+	var s20Template = require('text!../templates/slider1-20.html');		// 20 - Slider von 1-20 - mehrere pro Seite
+	var s100Template = require('text!../templates/slider1-100.html');	// 100 - Slider von 1-100 - mehrere pro Seite
+	var s715Template = require('text!../templates/slider0-7_15.html');// 715 - Slider von 0-7 in 1/4 Schritten
+	var b5Template = require('text!../templates/b5.html');						// 6 - Smiley-Buttons von 1-5 - mehrere pro Seite
+	var b7Template = require('text!../templates/b7.html');						// 7 - Smiley-Buttons von 1-7 - mehrere pro Seite
 
 	/* Klasse: Frage
 	 * @param: obj:Objekt, dass die folgenden Parambeter enthält
@@ -47,14 +43,12 @@ define(function(require) {
 				switch (this.art) {
 					case  1: this.tpl = mtTemplate; break;
 					case  5: this.tpl = s5Template; break;
-/*
-					case  4: this.tpl = frage4Template; break;
-					case  7: this.tpl = frage7Template; break;
-					case 11: this.tpl = s11Template; break;
+					case  6: this.tpl = b5Template; break;
+					case  7: this.tpl = s7Template; break;
+					case  8: this.tpl = b7Template; break;
 					case 20: this.tpl = s20Template; break;
-					case 24: this.tpl = s24Template; break;
-					case 49: this.tpl = s49Template; ;break;
-*/
+					case 100: this.tpl = s100Template; break;
+					case 715: this.tpl = s715Template; ;break;
 					default: this.tpl = s5Template;
 				}
 			}

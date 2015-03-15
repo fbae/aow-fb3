@@ -128,8 +128,8 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 					if (db.objectStoreNames.contains('log')) db.deleteObjectStore('log');
 					if (db.objectStoreNames.contains('antwortenM')) db.deleteObjectStore('antwortenM');
 					if (db.objectStoreNames.contains('antwortenW')) db.deleteObjectStore('antwortenW');
-					if (db.objectStoreNames.contains('antwortenN')) db.deleteObjectStore('antwortenN');
 					if (db.objectStoreNames.contains('antwortenA')) db.deleteObjectStore('antwortenA');
+					if (db.objectStoreNames.contains('antwortenE')) db.deleteObjectStore('antwortenE');
 					if (db.objectStoreNames.contains('einstellungen')) db.deleteObjectStore('einstellungen');
 				}
 
@@ -138,15 +138,15 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 				objectStoreLog.add( { dt:new Date(), msg:'log neu angelegt' } );
 				var objectStoreAntwortenM = db.createObjectStore('antwortenM', { keyPath: 'id', autoIncrement: true });
 				var objectStoreAntwortenW = db.createObjectStore('antwortenW', { keyPath: 'id', autoIncrement: true });
-				var objectStoreAntwortenN = db.createObjectStore('antwortenN', { keyPath: 'id', autoIncrement: true });
 				var objectStoreAntwortenA = db.createObjectStore('antwortenA', { keyPath: 'id', autoIncrement: true });
+				var objectStoreAntwortenN = db.createObjectStore('antwortenE', { keyPath: 'id', autoIncrement: true });
 				var objectStoreEinstellungen = db.createObjectStore('einstellungen', { keyPath: 'key' });
 
 			};  // Ende onUpgradeNeeded
 
 			// initialisiere die Programm-Variablen ==================================
 			this.set('status','debug');
-			this.set('version','0.1');
+			this.set('version','0.2');
 			if ((this.get('status') == 'debug') && this.db)
 				//TODO tritt nicht ein, weil so früh this.db noch nicht zur Verfügung steht
 				this.db.transaction('log','readwrite').objectStore('log').clear();
@@ -413,19 +413,19 @@ console.debug('setzeAntwort', antwortO);
 			}
 
 			// Wenn alle Daten weg sind den SpeichernAlle-Button ausblenden
-			var antA = ['antwortenM','antwortenW','antwortenN','antwortenA','log'];
+			var antA = ['antwortenM','antwortenW','antwortenE','antwortenA','log'];
 			var t = self.db.transaction(antA);
 			var anz = 0;
 			t.objectStore('antwortenM').count().onsuccess = function(e) {
 				anz = anz + e.target.result;
 				t.objectStore('antwortenW').count().onsuccess = function(e) {
 					anz = anz + e.target.result;
-					t.objectStore('antwortenN').count().onsuccess = function(e) {
+					t.objectStore('antwortenE').count().onsuccess = function(e) {
 						anz = anz + e.target.result;
 						t.objectStore('antwortenA').count().onsuccess = function(e) {
 							anz = anz + e.target.result;
 							self.showSaveAllButton(Boolean(anz > 0));
-							console.info('es wurden '+anz+' Datensätze in M, W, N und A gezählt');
+							console.info('es wurden '+anz+' Datensätze in M, W, E und A gezählt');
 						}
 					}
 				}
@@ -464,14 +464,14 @@ console.debug('setzeAntwort', antwortO);
 		countDS: function() {
 			var self = this;
 			self.set({count:0},{silent:true});
-			var tran = self.db.transaction(['antwortenM','antwortenW','antwortenN','antwortenA']);
+			var tran = self.db.transaction(['antwortenM','antwortenW','antwortenE','antwortenA']);
 			tran.objectStore('antwortenM').count().onsuccess = function(e) {
 				self.set('count', self.get('count') + e.target.result);
 			};
 			tran.objectStore('antwortenW').count().onsuccess = function(e) {
 				self.set('count', self.get('count') + e.target.result);
 			};
-			tran.objectStore('antwortenN').count().onsuccess = function(e) {
+			tran.objectStore('antwortenE').count().onsuccess = function(e) {
 				self.set('count', self.get('count') + e.target.result);
 			};
 			tran.objectStore('antwortenA').count().onsuccess = function(e) {

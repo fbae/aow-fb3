@@ -1,4 +1,4 @@
-// View für mehrere Fragen mit horizontaler Auswahl
+// View für mehrere Fragen mit vertikaler Auswahl
 // ================================================
 
 define( function( require ) {
@@ -69,9 +69,12 @@ define( function( require ) {
 				var frage = f.get(fArr[i]).attributes;
 				switch (frage.art) {
 					case 5:
-//					case 20:
-//					case 24:
-//					case 49:
+					case 6:
+					case 7:
+					case 8:
+					case 20:
+					case 100:
+					case 715:
 						var kodierung = f.zeitpunkt() + frage.id;
 						this.$el.find( '#' + kodierung ).on( 'slidestop', function( event ) {
 							fb3.setzeAntwort({

@@ -24,8 +24,8 @@ define( function( require) {
 
 			'M': 'ablaufM',
 			'W': 'ablaufW',
-			'N': 'ablaufN',
 			'A': 'ablaufA',
+			'N': 'ablaufN',
 
 			// When #f? is on the url, the  method is called
 			'f?:nr': 'frage'
@@ -70,8 +70,8 @@ define( function( require) {
 		},
 		ablaufM: function() {	this.ablaufX('M'); },
 		ablaufW: function() { this.ablaufX('W'); },
-		ablaufN: function() { this.ablaufX('N'); },
 		ablaufA: function() { this.ablaufX('A'); },
+		ablaufE: function() { this.ablaufX('E'); },
 
 		frage: function(nr) {
 			if (this.fragen.typ == 'O') {

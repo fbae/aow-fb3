@@ -7,7 +7,7 @@ define(function( require ) {
 	var Frage = require('frage');
 	var MtView = require('view/mt');
 	var FView = require('view/f');
-	var MsgView = require('view/msg');
+//	var MsgView = require('view/msg'); // bisher nicht benötigt
 
 //console.debug('fragen.js: MtView', MtView);
 //TODO	var fehlerView = require('fehlerView');
@@ -39,8 +39,6 @@ define(function( require ) {
 			this.zeit = new Date();
 
 			// Fragen
-
-			//Heading: 'Wie fühlen Sie sich gerade?'
 			this.add(new Frage({id:'NA1', art:5, txt:'Bekümmert'}));
 			this.add(new Frage({id:'SE1', art:5, txt:'Entspannt'}));
 			this.add(new Frage({id:'PAVI1', art:5, txt:'Aktiv'}));
@@ -51,7 +49,7 @@ define(function( require ) {
 			this.add(new Frage({id:'VI2', art:5, txt:'Energiegeladen'}));
 			this.add(new Frage({id:'NA3', art:5, txt:'Gereizt'}));
 			this.add(new Frage({id:'SE3', art:5, txt:'Ruhig'}));
-			this.add(new Frage({id:'PA2', art:5, txt:'Freudig erregt'}));
+			this.add(new Frage({id:'PA3', art:5, txt:'Freudig erregt'}));
 			this.add(new Frage({id:'TI2', art:5, txt:'Ermattet'}));
 			this.add(new Frage({id:'NA5', art:5, txt:'Durcheinander'}));
 			this.add(new Frage({id:'VI3', art:5, txt:'Munter'}));
@@ -99,7 +97,7 @@ define(function( require ) {
 						['ja, mehr als drei Mal',1]
 				]
 			}));
-			this.add(new Frage({ id: 'ISI', art:1, txt: 'Bitte bewerten Sie den Schweregrad Ihrer Schlafprobleme während dieser Nacht (Einschlagschwierigkeiten, Durschschlafschwierigkeiten, Probleme wegen zu frühem Aufwachen).',
+			this.add(new Frage({ id: 'ISI', art:1, txt: 'Bitte bewerten Sie den Schweregrad Ihrer Schlafprobleme während dieser Nacht (Einschlagschwierigkeiten, Durschschlafschwierigkeiten, Probleme wegen zu frühen Aufwachens).',
 				bes: [ 
 						['keine',1],
 						['leicht',2],
@@ -109,10 +107,10 @@ define(function( require ) {
 				]
 			}));
 
-			this.add(new Frage({id:'STRATREC1', art:5, txt:'Ich fühle mich ausgeschlafen.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
-			this.add(new Frage({id:'STRATREC2', art:5, txt:'Ich fühle mich körperlich erholt.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
-			this.add(new Frage({id:'STRATREC3', art:5, txt:'Ich fühle mich geistig erholt.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
-			this.add(new Frage({id:'STRATREC4', art:5, txt:'Ich bin voll neuer Energie.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
+			this.add(new Frage({id:'STATREC1', art:5, txt:'ausgeschlafen.'}));
+			this.add(new Frage({id:'STATREC2', art:5, txt:'körperlich erholt.'}));
+			this.add(new Frage({id:'STATREC3', art:5, txt:'geistig erholt.'}));
+			this.add(new Frage({id:'STATREC4', art:5, txt:'Ich bin voll neuer Energie.'}));
 
 			this.add(new Frage({id:'COMPI', art:5, txt:'Die Unterbrechungsaufgabe war sehr anspruchsvoll.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'COMPP', art:5, txt:'In was für einer Aufgabe wurden Sie unterbrochen?<br/>Bitte wählen Sie aus:', lTxt:'Leichte Aufgabe', rTxt:'Schwierige Aufgabe'}));
@@ -139,22 +137,21 @@ define(function( require ) {
 
 			//Nach Arbeitsende
 
-			this.add(new Frage({id:'TLX1', art:20, txt:'Wie hoch waren heute die geistigen Anforderungen?', lTxt:'sehr niedrig', rTxt:'sehr hoch'}));
-			this.add(new Frage({id:'TLX2', art:20, txt:'Wie hoch waren heute die körperlichen Anforderungen?', lTxt:'sehr gering', rTxt:'sehr hoch'}));
-			this.add(new Frage({id:'TLX3', art:20, txt:'Wie hoch waren heute die geistigen Anforderungen?', lTxt:'sehr niedrig', rTxt:'sehr hoch'}));
+			this.add(new Frage({id:'TLX1', art:20, txt:'geistigen Anforderungen?', lTxt:'sehr niedrig', rTxt:'sehr hoch'}));
+			this.add(new Frage({id:'TLX2', art:20, txt:'körperlichen Anforderungen?', lTxt:'sehr gering', rTxt:'sehr hoch'}));
+			this.add(new Frage({id:'TLX3', art:20, txt:'geistigen Anforderungen?', lTxt:'sehr niedrig', rTxt:'sehr hoch'}));
 			this.add(new Frage({id:'TLX4', art:20, txt:'Wie hoch war das Tempo, mit dem Sie die einzelnen Aufgaben bewältigen mussten?', lTxt:'sehr niedrig', rTxt:'sehr hoch'}));
 			this.add(new Frage({id:'TLX5', art:20, txt:'Wie erfolgreich haben Sie Ihre Aufgaben heute Ihrer Meinung nach durchgeführt?', lTxt:'perfekter Erfolg', rTxt:'Misserfolg'}));
 			this.add(new Frage({id:'TLX6', art:20, txt:'Wie sehr mussten Sie sich anstrengen, um Ihre Leistung zu erreichen?', lTxt:'sehr wenig', rTxt:'sehr stark'}));
 			this.add(new Frage({id:'TLX7', art:20, txt:'Wie verunsichert, entmutigt, gereizt und verärgert waren Sie am heutigen Arbeitstag?', lTxt:'sehr wenig', rTxt:'sehr stark'}));
 			this.add(new Frage({id:'TLX8', art:20, txt:'Wie gestresst fühlten Sie sich heute?', lTxt:'sehr wenig', rTxt:'sehr stark'}));
 
-			Heading: 'Inwiefern stimmen Sie den folgenden Aussagen zu?'
 			this.add(new Frage({id:'TPRESS1', art:5, txt:'Ich stand heute unter Zeitdruck.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'TPRESS2', art:5, txt:'Ich musste heute schneller arbeiten, als ich es normalerweise tue, um meine Arbeit zu schaffen.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'TPRESS3', art:5, txt:'Bei meiner Arbeit wurde heute ein hohes Arbeitstempo verlangt.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 
 			this.add(new Frage({id:'SITCON1', art:5, txt:'Ich musste heute mit Unterlagen und Informationen arbeiten, die unvollständig und veraltet waren.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
-			this.add(new Frage({id:'SITCON2', art:5, txt:'Ich musste heute viel Zeit damit vertun, mir Informationen, Material oder Werkzeug zu beschaffen.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
+			this.add(new Frage({id:'SITCON2', art:5, txt:'Ich musste heute viel Zeit damit vertan, mir Informationen, Material oder Werkzeug zu beschaffen.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'SITCON3', art:5, txt:'Ich musste heute mit Material, Arbeitsmitteln oder Werkzeug arbeiten, die nicht viel taugten.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 
 			this.add(new Frage({ id: 'CONT1', art:1, txt: 'Wenn Sie Ihre Tätigkeit heute betrachten, inwieweit konnten Sie die Reihenfolge der Arbeitsschritte selbst festlegen?',
@@ -208,8 +205,8 @@ define(function( require ) {
 			this.add(new Frage({id:'WD4', art:5, txt:'Heute habe ich insgesamt mehr Zeit mit Pausen verbraucht, als mir zusteht.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'WD5', art:5, txt:'Heute habe ich bei der Arbeit viel Zeit mit Tagträumen verbracht.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 
-			this.add(new Frage({id:'WORR_W1', art:5, txt:'Ich habe mir Sorgen gemacht, dass ich meine Arbeit nicht gut genug gemacht habe.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
-			this.add(new Frage({id:'WORR_W2', art:5, txt:'Ich habe mir Gedanken gemacht, nicht alles zu schaffen, was ich mir vorgenommen hatte.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
+			this.add(new Frage({id:'WORR1', art:5, txt:'Ich habe mir Sorgen gemacht, dass ich meine Arbeit nicht gut genug gemacht habe.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
+			this.add(new Frage({id:'WORR2', art:5, txt:'Ich habe mir Gedanken gemacht, nicht alles zu schaffen, was ich mir vorgenommen hatte.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 
 
 			this.add(new Frage({id:'JOBSAT', art:8, txt:'Wie zufrieden sind sie <b>heute</b> mit Ihrem Job?', lTxt:'außerordentlich unzufrieden', rTxt:'außerordentlich zufrieden'}));
@@ -220,8 +217,8 @@ define(function( require ) {
 			this.add(new Frage({id:'FORGET', art:5, txt:'Ich habe heute vergessen, bereits angefangende oder geplante Aufgaben zu erledigen.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'ERR', art:5, txt:'Heute habe ich Fehler während meiner Arbeitszeit gemacht.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 
-			this.add(new Frage({id:'WORR_E1', art:5, txt:'Ich habe mir heute noch nach Feierabend Sorgen gemacht, dass ich meine Arbeit nicht gut genug gemacht habe.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
-			this.add(new Frage({id:'WORR_E2', art:5, txt:'Ich habe mir heute noch nach Feierabend Sorgen gemacht, dass ich nicht alles geschafft habe, was ich mir vorgenommen hatte.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
+			this.add(new Frage({id:'WORR1E', art:5, txt:'Ich habe mir heute noch nach Feierabend Sorgen gemacht, dass ich meine Arbeit nicht gut genug gemacht habe.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
+			this.add(new Frage({id:'WORR2E', art:5, txt:'Ich habe mir heute noch nach Feierabend Sorgen gemacht, dass ich nicht alles geschafft habe, was ich mir vorgenommen hatte.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 
 			this.add(new Frage({id:'IRR_K1', art:7, txt:'Es fiel mir heute schwer, nach der Arbeit abzuschalten.', lTxt:'trifft überhaupt nicht zu', rTxt:'trifft fast völlig zu'}));
 			this.add(new Frage({id:'IRR_K2', art:7, txt:'Ich musste auch zu Hause an Schwierigkeiten bei der Arbeit denken.', lTxt:'trifft überhaupt nicht zu', rTxt:'trifft fast völlig zu'}));
@@ -232,8 +229,9 @@ define(function( require ) {
 			this.add(new Frage({id:'IRR_E4', art:7, txt:'Ich reagierte heute gereizt, obwohl ich es gar nicht wollte.', lTxt:'trifft überhaupt nicht zu', rTxt:'trifft fast völlig zu'}));
 			this.add(new Frage({id:'IRR_E5', art:7, txt:'Als ich müde von der Arbeit nach Hause kam, fand ich durch nichts Erholung.', lTxt:'trifft überhaupt nicht zu', rTxt:'trifft fast völlig zu'}));
 
+			//Nach der Arbeit &hellip;
 			this.add(new Frage({id:'REC_E1', art:5, txt:'Nach der Arbeit habe ich abgeschalten und mich entspannt.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
-			this.add(new Frage({id:'REC_E2', art:5, txt:'Nach der Arbeit habe ich aentspannende Dinge getan.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
+			this.add(new Frage({id:'REC_E2', art:5, txt:'Nach der Arbeit habe ich entspannende Dinge getan.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'REC_E3', art:5, txt:'Nach der Arbeit nutzte ich die Zeit zur Entspannung.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'REC_E4', art:5, txt:'Nach der Arbeit gönnte ich mir Freizeit/nutze ich die Zeit für Erholung.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'REC_M1', art:5, txt:'Nach der Arbeit lernte ich neue Dinge.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
@@ -245,10 +243,12 @@ define(function( require ) {
 			this.add(new Frage({id:'DANGER_QUANT2', art:2, txt:'Haben Sie heute länger gearbeitet?'}));
 			this.add(new Frage({id:'DANGER_QUAL1', art:2, txt:'Haben Sie heute in einem Arbeitstempo gearbeitet, das Sie langfristig nicht durchhalten können?'}));
 			this.add(new Frage({id:'DANGER_QUAL2', art:2, txt:'Haben Sie heute in einem Arbeitstempo gearbeitet, von dem Sie wissen, dass es Ihnen nicht gut tut?'}));
-			this.add(new Frage({id:'DRUG_RELAX', art:2, txt:'Haben Sie heute Genussmittel/Substanzen (z.B. Alkohol, Nikotin oder Medikamente) konsumiert, um nach der Arbeit besser abschalten zu können?'}));
-			this.add(new Frage({id:'DRUG_RELAX2', art:2, txt:'Haben Sie heute Genussmittel/Substanzen (z.B. Alkohol, Nikotin oder Medikamente) konsumiert, um nach der Arbeit besser einschlafen zu können?'}));
-			this.add(new Frage({id:'DRUG_STIMU1', art:2, txt:'Haben Sie heute Genussmittel/Substanzen (z.B. Alkohol, Nikotin oder Medikamente) konsumiert, um Ihre hohe Arbeitsmenge bewältigen zu können?'}));
-			this.add(new Frage({id:'DRUG_STIMU2', art:2, txt:'Haben Sie heute Genussmittel/Substanzen (z.B. Alkohol, Nikotin oder Medikamente) konsumiert, um bei der Arbeit leistungsfähiger zu sein?'}));
+
+			//Haben Sie heute Genussmittel/Substanzen (z.B. Alkohol, Nikotin oder Medikamente) konsumiert, um nach der Arbeit 
+			this.add(new Frage({id:'DRUG_RELAX', art:2, txt:'&hellip; besser abschalten zu können?'}));
+			this.add(new Frage({id:'DRUG_RELAX2', art:2, txt:'&hellip; besser einschlafen zu können?'}));
+			this.add(new Frage({id:'DRUG_STIMU1', art:2, txt:'&hellip; besser bewältigen zu können?'}));
+			this.add(new Frage({id:'DRUG_STIMU2', art:2, txt:'&hellip; leistungsfähiger zu sein?'}));
 
 			this.add(new Frage({id:'SMOK', art:2, txt:'Haben Sie heute geraucht?'}));
 			this.add(new Frage({id:'ALC', art:2, txt:'Haben Sie heute Alkohol getrunken?'}));
@@ -264,14 +264,56 @@ define(function( require ) {
 */
 
 			this.ablauf = {
-				morgens:[
-				{v:MtView, f:['PSQI7']},
-				{v:MtView, f:['PSQI4']}
+				morning:[
+					{v:MtView, f:['PSQI7']},
+					{v:MtView, f:['PSQI4']},
+					{v:MtView, f:['PSQI11']},
+					{v:MtView, f:['ISI']},
+					{v:FView, f:['STATREC1','STATREC2','STATREC3','STATREC4'], heading:'Ich fühle mich &hellip;<br/><div class="erkl"><span>trifft gar nicht zu</span><span>trifft völlig zu</span></div>'}
+
 				],
+				work:[
+					{v:FView, f:['JOBSAT']}
+				],
+				afterWork:[
+					{v:FView, f:['TLX1', 'TLX2', 'TLX3', 'TLX4'], heading:'Wie hoch waren heute die &hellip;'},
+					{v:FView, f:['TLX5', 'TLX6']},
+					{v:FView, f:['TLX7', 'TLX8']},
+					{v:FView, f:['TPRESS1', 'TPRESS2', 'TPRESS3'], heading: 'Inwiefern stimmen Sie den folgenden Aussagen zu?'},
+					{v:FView, f:['SITCON1', 'SITCON2', 'SITCON3']},
+					{v:MtView, f:['CONT1']},
+					{v:MtView, f:['CONT2']},
+					{v:MtView, f:['CONT3']},
+					{v:FView, f:['SUPPO1', 'SUPPO2', 'FULLFI']},
+					{v:FView, f:['QUAL', 'WEDE1', 'WEDE2']},
+					{v:FView, f:['WEVI3', 'WEAB1', 'WEDE3']},
+					{v:FView, f:['WEAB2', 'WEAB3', 'WEVI1']},
+					{v:FView, f:['WEVI2', 'WD1', 'WD2']},
+					{v:FView, f:['WD3', 'WD4', 'WD5']},
+					{v:FView, f:['WORR1', 'WORR2']},
+					{v:FView, f:['JOBSAT']}
+				],
+				evening:[
+					{v:FView, f:['OVERTI','FORGET','ERR']},
+					{v:FView, f:['WORR1E','WORR2E']},
+					{v:FView, f:['IRR_K1', 'IRR_K2', 'IRR_E1', 'IRR_K3']},
+					{v:FView, f:['IRR_E2', 'IRR_E3', 'IRR_E4', 'IRR_E5']},
+					{v:FView, f:['REC_E1', 'REC_E2', 'REC_E3', 'REC_E4']},
+					{v:FView, f:['REC_M1', 'REC_M2', 'REC_M3', 'REC_M4']},
+					{v:FView, f:['DANGER_QUANT1', 'DANGER_QUANT2', 'DANGER_QUAL1', 'DANGER_QUAL2', 'DRUG_RELAX1', 'DRUG_RELAX2', 'DRUG_STIMU1', 'DRUG_STIMU2', 'SMOK', 'ALC']},
+/*					{v:FView, f:[]},
+					{v:FView, f:[]},
+					{v:FView, f:[]},
+					{v:FView, f:[]},
+					{v:FView, f:[]},
+					{v:FView, f:[]},
+					*/
+				],
+
 				STI:[
 				{v:FView,  f:['NA1','SE1','PAVI1','NA2'], heading:'Wie fühlen Sie sich gerade?<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>'},
 				{v:FView,  f:['SE2', 'PA2', 'TI1', 'VI2'], heading:'Wie fühlen Sie sich gerade?<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>'},
-				{v:FView,  f:['NA3', 'SE3', 'PA2', 'TI2'], heading:'Wie fühlen Sie sich gerade?<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>'},
+				{v:FView,  f:['NA3', 'SE3', 'PA3', 'TI2'], heading:'Wie fühlen Sie sich gerade?<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>'},
 				{v:FView,  f:['NA5', 'VI3', 'NA4', 'PA4'], heading:'Wie fühlen Sie sich gerade?<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>'},
 				{v:FView,  f:['VI4', 'PA5', 'NA6', 'PA6'], heading:'Wie fühlen Sie sich gerade?<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>'},
 				{v:FView,  f:['TI3'], heading:'Wie fühlen Sie sich gerade?<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>'}
@@ -284,23 +326,29 @@ define(function( require ) {
 				writeable: false,
 				get: function(){ return [] },
 			});
-			Object.defineProperty(this.ablauf, 'A', { // abends
+			Object.defineProperty(this.ablauf, 'M', { // morning
 				__proto__: null,
 				enumerable: true,
 				writeable: false,
-				get: function(){ return [] /*this.STI.concat(this.MF,this.A1)*/ },
+				get: function(){ return this.STI.concat(this.morning); },
 			});
-			Object.defineProperty(this.ablauf, 'M', { // morgens
+			Object.defineProperty(this.ablauf, 'W', { // morning
 				__proto__: null,
 				enumerable: true,
 				writeable: false,
-				get: function(){ return this.STI.concat(this.morgens); },
+				get: function(){ return this.work; },
 			});
-			Object.defineProperty(this.ablauf, 'N', { // nach der Arbeit
+			Object.defineProperty(this.ablauf, 'A', { // after der Arbeit
 				__proto__: null,
 				enumerable: true,
 				writeable: false,
-				get: function(){ return [] },
+				get: function(){ return this.STI.concat(this.afterWork); },
+			});
+			Object.defineProperty(this.ablauf, 'E', { // evening abends
+				__proto__: null,
+				enumerable: true,
+				writeable: false,
+				get: function(){ return this.STI.concat(this.evening) },
 			});
 		}, // Ende initialize
 
@@ -377,8 +425,8 @@ define(function( require ) {
 			switch (this.typ) {
 				case 'M': return 'M_'; break;
 				case 'W': return 'W_'; break;
-				case 'N': return 'N_'; break;
 				case 'A': return 'A_'; break;
+				case 'E': return 'E_'; break;
 				default: return '0';
 			}
 			return undefined;

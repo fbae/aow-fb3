@@ -1,0 +1,69 @@
+<div data-role='fieldcontain' data-theme='a' class='smiley7fc'>
+	<label for='<%= kodierung %>'>
+		<div class='frage'><%= txt %></div>
+		<!--		<div style='position:relative; float:none; clear:both'></div>-->
+	</label>
+	<fieldset data-role='controlgroup' data-type='horizontal' id='<%= kodierung %>'  name='<%= kodierung %>' >
+<% 
+var legend=(lTxt != null || rTxt != null || mTxt != null);
+if (legend) print('		<legend>');
+if (lTxt != null) print("		<div class='linkeBeschriftung'>" + lTxt + "</div>");
+if (rTxt != null) print("		<div class='rechteBeschriftung'>" + rTxt + "</div>");
+if (mTxt != null) print("		<div class='mittlereBeschriftung'>" + mTxt + "</div>");
+if (legend) print('		</legend>');
+%>
+		</legend>
+
+		<div class="smiley7btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/t1.png) no-repeat center;'>
+			<input data-enhanced="true" value="1" type="radio" id='_<%= kodierung%>1' name='_<%= kodierung%>1'  
+			<% if (ant == 1) print( 'checked="checked"' ) %>
+			onClick='fb3.setzeAntwort({"kodierung": "<%= kodierung %>", "zeit": new Date(), "antw": "1"});'
+			>
+			<label for='_<%= kodierung%>1'></label>
+		</div>
+		<div class="smiley7btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/t2.png) no-repeat center;'>
+			<input data-enhanced="true" value="2" type="radio" id='_<%= kodierung%>2' name='_<%= kodierung%>2'  
+			<% if (ant == 2) print( 'checked="checked"' ) %>
+			onClick='fb3.setzeAntwort({"kodierung": "<%= kodierung %>", "zeit": new Date(), "antw": "2"});'
+			>
+			<label for='_<%= kodierung%>2'></label>
+		</div>
+		<div class="smiley7btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/t3.png) no-repeat center;'>
+			<input data-enhanced="true" value="3" type="radio" id='_<%= kodierung%>3' name='_<%= kodierung%>3'  
+			<% if (ant == 3) print( 'checked="checked"' ) %>
+			onClick='fb3.setzeAntwort({"kodierung": "<%= kodierung %>", "zeit": new Date(), "antw": "3"});'
+			>
+			<label for='_<%= kodierung%>3'></label>
+		</div>
+		<div class="smiley7btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/t4.png) no-repeat center;'>
+			<input data-enhanced="true" value="4" type="radio" id='_<%= kodierung%>4' name='_<%= kodierung%>4'  
+			<% if (ant == 4) print( 'checked="checked"' ) %>
+			onClick='fb3.setzeAntwort({"kodierung": "<%= kodierung %>", "zeit": new Date(), "antw": "4"});'
+			>
+			<label for='_<%= kodierung%>4'></label>
+		</div>
+		<div class="smiley7btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/t5.png) no-repeat center;'>
+			<input data-enhanced="true" value="5" type="radio" id='_<%= kodierung%>5' name='_<%= kodierung%>5'  
+			<% if (ant == 5) print( 'checked="checked"' ) %>
+			onClick='fb3.setzeAntwort({"kodierung": "<%= kodierung %>", "zeit": new Date(), "antw": "5"});'
+			>
+			<label for='_<%= kodierung%>5'></label>
+		</div>
+		<div class="smiley7btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/t6.png) no-repeat center;'>
+			<input data-enhanced="true" value="6" type="radio" id='_<%= kodierung%>6' name='_<%= kodierung%>6'  
+			<% if (ant == 6) print( 'checked="checked"' ) %>
+			checked="checked"
+			onClick='fb3.setzeAntwort({"kodierung": "<%= kodierung %>", "zeit": new Date(), "antw": "6"});'
+			>
+			<label for='_<%= kodierung%>6'></label>
+		</div>
+		<div class="smiley7btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/t7.png) no-repeat center;'>
+			<input data-enhanced="true" value="7" type="radio" id='_<%= kodierung%>7' name='_<%= kodierung%>7'  
+			<% if (ant == 7) print( 'checked="checked"' ) %>
+			checked="checked"
+			onClick='fb3.setzeAntwort({"kodierung": "<%= kodierung %>", "zeit": new Date(), "antw": "7"});'
+			>
+			<label for='_<%= kodierung%>7'></label>
+		</div>
+	</fieldset>
+</div>
