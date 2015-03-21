@@ -23,9 +23,18 @@ define( function( require) {
 			'settings': 'settings',
 
 			'M': 'ablaufM',
-			'W': 'ablaufW',
+			'W':  function() {
+				$(':mobile-pagecontainer').pagecontainer('change', '#W', {reverse: false, changeHash: true});
+			},
+			'W1': function() {
+				$(':mobile-pagecontainer').pagecontainer('change', '#W1', {reverse: false, changeHash: true});
+			},
+			'W2': function() {
+				$(':mobile-pagecontainer').pagecontainer('change', '#W2', {reverse: false, changeHash: true});
+			},
+			'Q': 'ablaufQ',
 			'A': 'ablaufA',
-			'N': 'ablaufN',
+			'E': 'ablaufE',
 
 			// When #f? is on the url, the  method is called
 			'f?:nr': 'frage'
@@ -69,9 +78,9 @@ define( function( require) {
 			$.mobile.changePage('#f?0', {reverse: false, changeHash: true} );
 		},
 		ablaufM: function() {	this.ablaufX('M'); },
-		ablaufW: function() { this.ablaufX('W'); },
 		ablaufA: function() { this.ablaufX('A'); },
 		ablaufE: function() { this.ablaufX('E'); },
+		ablaufQ: function() { this.ablaufX('Q'); },
 
 		frage: function(nr) {
 			if (this.fragen.typ == 'O') {

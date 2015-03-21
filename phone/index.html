@@ -23,14 +23,14 @@
 				<h3>Bitte wählen Sie einen Fragebogen</h3>
 				<ul data-role='listview' data-inset='true'>
 					<li><a href='#M'>morgens</a></li>
-					<li><a href='#W'>während der Arbeit</a></li>
+					<li><a id='W' href='#W'>während der Arbeit</a></li>
 					<li><a href='#A'>nach der Arbeit</a></li>
 					<li><a href='#E'>abends</a></li>
 				</ul>
 			</div>
-			<div data-role="popup" id="danke" data-theme='e' data-overlay-theme='c'>
+			<div data-role="popup" id="danke" data-theme='a' data-overlay-theme='b'>
 				<p>Ende des Fragebogens.<br/>Vielen Dank für das Ausfüllen!<p>
-					<a href="#" data-rel="back" data-role="button" data-theme="c"
+					<a href="#" data-rel="back" data-role="button" data-theme="a"
 						data-icon="delete" data-iconpos="notext" class="ui-btn-right">ok</a>
 			</div>
 			<div data-theme='a' data-role='footer' data-position='fixed'>
@@ -53,5 +53,24 @@
 		<div id='f' data-title='Frage' data-role='page' data-theme='a' data-url="f" class="ui-page ui-body-c ui-page-footer-fixed">
 		</div>
 
+		<div id='W' data-title='während der Arbeit' data-role='page' data-theme='b'>
+			<div data-role='main' class='ui-content'>
+				<a href='#W1' class='ui-btn' id='ww1'>Unterbrechung</a>
+				<a href='#W2' class='ui-btn' id='ww2'>echte Pause</a>
+				<a href='#A'  class='ui-btn' id='wN'>Arbeitsende</a>
+			</div>
+		</div>
+		<div id='W1' data-role='page' data-theme='b'>
+			<div data-role='main' class='ui-content'>
+				<a href='#Q' class='ui-btn' id='w1q'>Ende</a>
+				<a href='#W' class='ui-btn' id='w1w'>zurück</a>
+			</div>
+		</div>
+		<div id='W2' data-role='page' data-theme='b'>
+			<div data-role='main' class='ui-content'>
+				<a href='#W' class='ui-btn' id='w2e'>Ende</a>
+				<a href='#W' class='ui-btn' id='w2w'>zurück</a>
+			</div>
+		</div>
 	</body>
 </html>

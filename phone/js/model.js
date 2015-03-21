@@ -12,7 +12,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 
 			// lege die Datenbank an, falls das noch nicht passiert ist, oder sich die Version geändert hat
 			this.dbName = 'fb3.multitasking.uni-mainz';
-			this.dbVersion = '1';
+			this.dbVersion = '2';
 
 			var self= this;
 			var openRequest = indexedDB.open(this.dbName,this.dbVersion);
@@ -588,6 +588,58 @@ console.debug('setzeAntwort', antwortO);
 	fb3.on('change:count', function(model,antw) {
 		$('#save0DataButton').attr('title',this.get('count')+' Datensätze sind vorhanden.').trigger('mouseover');
 	});
+
+	// während der Arbeit - drei Fenster von Hand programmiert W, W1, W2
+	// WorkStart in die Datenbank Tabelle W eintragen
+	$('#W').on('click',function(evt){
+		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
+			.put({'workstart':new Date(), 'device':fb3.get('device')})
+			.onerror = function(e) { console.warn('Fehler: #W click (workstart) hat keinen IDB Eintrag hinterlassen ',e);};
+	}); 
+	// intStart in die Datenbank Tabelle W eintragen
+	$('#ww1').on('click',function(evt){
+		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
+			.put({'intstart':new Date(), 'device':fb3.get('device')})
+			.onsuccess = function(e) {
+				// Eintrag wieder löschen, wenn auf zurück gegangen wird - e.target.result speichert die neu erstellte id
+				$('#w1w').on('click',null,e.target.result,function(evt) {
+					fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW').delete(evt.data);
+				});
+			};
+	}); 
+	// intEnd in die Datenbank Tabelle W eintragen
+	$('#w1q').on('click',function(evt){
+		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
+			.put({'intend':new Date(), 'device':fb3.get('device')})
+			.onsuccess = function(){
+				$('#w1w').off('click');
+			}
+	}); 
+	// brStart in die Datenbank Tabelle W eintragen
+	$('#ww2').on('click',function(evt){
+		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
+			.put({'work':new Date(), 'device':fb3.get('device')})
+			.onsuccess = function(e) {
+				// wie oben - zurück-Button löscht den letzten Eintrag 
+				$('#w2w').on('click',null,e.target.result,function(evt) {
+					fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW').delete(evt.data);
+				});
+			};
+	}); 
+	// brEnd eintragen
+	$('#w2e').on('click',function(evt){
+		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
+			.put({'intend':new Date(), 'device':fb3.get('device')})
+			.onsuccess = function(){
+				$('#w2w').off('click');
+			}
+	}); 
+	// WorkEnd in die Datenbank Tabelle W eintragen
+	$('#wN').on('click',function(evt){
+		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
+			.put({'workend':new Date(), 'device':fb3.get('device')})
+	}); 
+
 	return Fb3Model;
 } );
 

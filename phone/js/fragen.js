@@ -7,6 +7,7 @@ define(function( require ) {
 	var Frage = require('frage');
 	var MtView = require('view/mt');
 	var FView = require('view/f');
+	var W1View = require('view/w1');
 //	var MsgView = require('view/msg'); // bisher nicht benötigt
 
 //console.debug('fragen.js: MtView', MtView);
@@ -273,7 +274,11 @@ define(function( require ) {
 
 				],
 				work:[
-					{v:FView, f:['JOBSAT']}
+					{v:MtView, f:['COMPI']},
+					{v:MtView, f:['COMPP']},
+					{v:MtView, f:['SOU']},
+					{v:MtView, f:['MED']},
+					{v:MtView, f:['SITMOOD']},
 				],
 				afterWork:[
 					{v:FView, f:['TLX1', 'TLX2', 'TLX3', 'TLX4'], heading:'Wie hoch waren heute die &hellip;'},
@@ -296,13 +301,13 @@ define(function( require ) {
 				evening:[
 					{v:FView, f:['OVERTI','FORGET','ERR']},
 					{v:FView, f:['WORR1E','WORR2E']},
-					{v:FView, f:['IRR_K1', 'IRR_K2', 'IRR_E1', 'IRR_K3']},
-					{v:FView, f:['IRR_E2', 'IRR_E3', 'IRR_E4', 'IRR_E5']},
-					{v:FView, f:['REC_E1', 'REC_E2', 'REC_E3', 'REC_E4']},
+					{v:FView, f:['IRR_K1', 'IRR_K2', 'IRR_E1']},
+					{v:FView, f:['IRR_K3', 'IRR_E2', 'IRR_E3']},
+					{v:FView, f:['IRR_E4', 'IRR_E5', 'REC_E1']},
+					{v:FView, f:['REC_E2', 'REC_E3', 'REC_E4']},
 					{v:FView, f:['REC_M1', 'REC_M2', 'REC_M3', 'REC_M4']},
 					{v:FView, f:['DANGER_QUANT1', 'DANGER_QUANT2', 'DANGER_QUAL1', 'DANGER_QUAL2', 'DRUG_RELAX1', 'DRUG_RELAX2', 'DRUG_STIMU1', 'DRUG_STIMU2', 'SMOK', 'ALC']},
 /*					{v:FView, f:[]},
-					{v:FView, f:[]},
 					{v:FView, f:[]},
 					{v:FView, f:[]},
 					{v:FView, f:[]},
@@ -318,7 +323,7 @@ define(function( require ) {
 				{v:FView,  f:['VI4', 'PA5', 'NA6', 'PA6'], heading:'Wie fühlen Sie sich gerade?<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>'},
 				{v:FView,  f:['TI3'], heading:'Wie fühlen Sie sich gerade?<br/><div class="erkl"><span>gar nicht</span> <span>schwach</span> <span>etwas</span> <span>ziemlich</span> <span>Sehr stark</span></div>'}
 				]
-			};
+			}; // this.ablauf
 
 			Object.defineProperty(this.ablauf, 'O', { // keine Ablauf
 				__proto__: null,
@@ -332,7 +337,7 @@ define(function( require ) {
 				writeable: false,
 				get: function(){ return this.STI.concat(this.morning); },
 			});
-			Object.defineProperty(this.ablauf, 'W', { // morning
+			Object.defineProperty(this.ablauf, 'W', { // während der Arbeit (work)
 				__proto__: null,
 				enumerable: true,
 				writeable: false,
@@ -435,6 +440,7 @@ define(function( require ) {
 		setzeAntwort: function(antwortO) {
 			if (antwortO.kodierung && antwortO.antw) {
 				var kod = antwortO.kodierung.substr(2,antwortO.kodierung.length-2);
+console.debug('setzeAntwort -> 1:', this, this.get(kod));
 				this.get(kod).attributes.ant = antwortO.antw;
 			}
 		},
