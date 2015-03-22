@@ -221,6 +221,20 @@ console.debug('setzeAntwort', antwortO);
 			return this.get('device') + '_' + vpn + '_' + heute.getUTCFullYear() + '-' + m + '-' + d;
 		},
 
+		// für besondere Abläufe können hier die Typen auf TabellenNamen gemappt werden
+		// hier zum Beispiel Ablauf Q wird in Tabelle antwortenW gespeichert
+		antwortenTabelle: function() { 
+			if (this.fragen.typ) {
+				var t;
+				switch (this.fragen.typ) {
+					case 'Q': t = 'W';
+										break;
+					default: t = this.fragen.typ;
+				}
+				return 'antworten'+t
+			} else return undefined;
+		},
+
 		neueAntworten: function() {
 			var self = this;
 			// alte Antworten löschen
@@ -232,7 +246,7 @@ console.debug('setzeAntwort', antwortO);
 				return undefined;
 			}
 
-			var antwTab = 'antworten' + this.fragen.typ;
+			var antwTab = this.antwortenTabelle();
 			this.set('antwortenTabelle',antwTab);
 
 			// neue Antworten eintragen
@@ -269,7 +283,6 @@ console.debug('setzeAntwort', antwortO);
 			self.unset('antworten', {silent: true});
 			self.unset('antwortenId');
 			self.unset('antwortenTabelle');
-
 		},
 
 		saveTab: function(tabName, errors) {

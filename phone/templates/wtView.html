@@ -1,0 +1,27 @@
+<div data-theme='a' data-role='content' class="ui-content ui-body-a">
+	<div class='frage' data-value='<%= id %>'>
+		<% if (heading != null) { print("<span class='fEinleitung'>"+heading+"</span>"); } %>
+		<%= txt %>
+	</div>
+
+	<ul id='antwort' data-role='listview' data-inset='true'>
+		<% _.each(bes, function(bd) { %>
+			<li <% print((ant == bd[1]) ? 'class="ui-btn-active"': '') %> data-icon='false' >
+				<a href='#<% if (next == null) { print('W') } else { print('f?'+next) ;} %>'
+					data-value='<% print(bd[1]); %>' 
+					class='mtAntwort'
+					id='<%=id%><% print(bd[1]);%>'
+					><% print(bd[0]); %></a>
+			</li>
+		<% }); // _.each %>
+	</ul>
+
+</div>
+<div data-theme='a' data-role='footer' data-position='fixed'>
+	<div data-role='navbar' data-iconpos='left'>
+		<ul>
+			<li><a href='#<% print((next == null) ? 'W' : 'f?' + next) %>' 
+				data-icon='arrow-r' class='mtNav' >weiter</a></li>
+		</ul>
+	</div>
+</div>

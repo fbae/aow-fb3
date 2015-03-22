@@ -7,7 +7,8 @@ define(function( require ) {
 	var Frage = require('frage');
 	var MtView = require('view/mt');
 	var FView = require('view/f');
-	var W1View = require('view/w1');
+	var WView = require('view/w');
+	var WtView = require('view/wt');
 //	var MsgView = require('view/msg'); // bisher nicht benötigt
 
 //console.debug('fragen.js: MtView', MtView);
@@ -115,7 +116,7 @@ define(function( require ) {
 
 			this.add(new Frage({id:'COMPI', art:5, txt:'Die Unterbrechungsaufgabe war sehr anspruchsvoll.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'COMPP', art:5, txt:'In was für einer Aufgabe wurden Sie unterbrochen?<br/>Bitte wählen Sie aus:', lTxt:'Leichte Aufgabe', rTxt:'Schwierige Aufgabe'}));
-			this.add(new Frage({id:'SOU', art:1, txt:'Wer oder was hat Sie unterbrochen?.',
+			this.add(new Frage({id:'SOU', art:3, txt:'Wer oder was hat Sie unterbrochen?.',
 				bes: [ 
 						['Kunde',1],
 						['Kollege',2],
@@ -124,7 +125,8 @@ define(function( require ) {
 						['Arbeitsmittel',5],
 						['andere',6]
 				]
-			}));this.add(new Frage({id:'MED', art:1, txt:'Wodurch wurden Sie unterbrochen?.',
+			}));
+			this.add(new Frage({id:'MED', art:3, txt:'Wodurch wurden Sie unterbrochen?.',
 				bes: [ 
 						['Telefon',1],
 						['Mail',2],
@@ -274,11 +276,9 @@ define(function( require ) {
 
 				],
 				work:[
-					{v:MtView, f:['COMPI']},
-					{v:MtView, f:['COMPP']},
-					{v:MtView, f:['SOU']},
-					{v:MtView, f:['MED']},
-					{v:MtView, f:['SITMOOD']},
+					{v:WView, f:['SITMOOD', 'COMPI', 'COMPP']},
+					{v:WtView, f:['SOU']},
+					{v:WtView, f:['MED']},
 				],
 				afterWork:[
 					{v:FView, f:['TLX1', 'TLX2', 'TLX3', 'TLX4'], heading:'Wie hoch waren heute die &hellip;'},
@@ -337,7 +337,7 @@ define(function( require ) {
 				writeable: false,
 				get: function(){ return this.STI.concat(this.morning); },
 			});
-			Object.defineProperty(this.ablauf, 'W', { // während der Arbeit (work)
+			Object.defineProperty(this.ablauf, 'Q', { // Teil von während der Arbeit (work++)
 				__proto__: null,
 				enumerable: true,
 				writeable: false,

@@ -1,0 +1,13 @@
+<div data-theme='b' data-role='content' class='ui-content ui-body-b'>
+	<% if (heading != null) { print('<div class="heading">'+heading+'</div>'); } %>
+	<% var nr=0; _.each(fragenTemplates, function(html) { %>
+	<div id='f<% print(nr++); %>'><% print(html); %></div>
+	<% }); %>
+</div>
+<div data-theme='b' data-role='footer' data-position='fixed'>
+	<div data-role='navbar' data-iconpos='left'>
+		<ul>
+			<li><a href='#<% print((next == null) ? 'S' : 'f?' + next) %>' data-icon='arrow-r' >weiter</a></li>
+		</ul>
+	</div>
+</div>
