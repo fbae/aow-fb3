@@ -429,7 +429,8 @@ define(function( require ) {
 		zeitpunkt: function() {
 			switch (this.typ) {
 				case 'M': return 'M_'; break;
-				case 'W': return 'W_'; break;
+				case 'W':
+				case 'Q': return 'W_'; break;
 				case 'A': return 'A_'; break;
 				case 'E': return 'E_'; break;
 				default: return '0';
@@ -440,7 +441,6 @@ define(function( require ) {
 		setzeAntwort: function(antwortO) {
 			if (antwortO.kodierung && antwortO.antw) {
 				var kod = antwortO.kodierung.substr(2,antwortO.kodierung.length-2);
-console.debug('setzeAntwort -> 1:', this, this.get(kod));
 				this.get(kod).attributes.ant = antwortO.antw;
 			}
 		},

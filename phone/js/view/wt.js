@@ -27,6 +27,7 @@ define(function(require) {
 		},
 		events: {
 			'click a.mtAntwort':'antwort',
+			'click a.wtSpeichern':'speichern',
 		},
 
 		antwort: function(evt) {
@@ -35,14 +36,10 @@ define(function(require) {
 				'zeit': new Date(),
 				'antw': evt.target.attributes['data-value'].value
 			});
-			if (this.fO.next === null || this.fO.kodierung === 'SITMOOD') {
-				var antw = this.get('antworten');
-console.debug('wView speichere Antworten:',antw);
-				fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW').put(antw);
-				this.unset('antworten', {silent: true});
-				this.unset('antwortenId');
-			} 
-			else console.debug('antwort für ',this.fO);
+		},
+		speichern: function(evt) {
+			console.debug('w speichern', fb3.get('antworten'));
+			fb3.speichereAntworten();
 		},
 
 		render: function() {
