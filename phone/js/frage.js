@@ -6,6 +6,7 @@
 define(function(require) {
 	var $ = require('jquery');																				// art
 	var mtTemplate = require('text!../templates/mtView.html');				// 1 - beschriftete Buttons beliebiger Anzahl - zugeordnete Werte - eine pro Seite
+	var jnTemplate = require('text!../templates/jn.html');						// 2 - ja/nein Antworten 
 	var wtTemplate = require('text!../templates/wtView.html');				// 3 - beschriftete Buttons beliebiger Anzahl
 	var s5Template = require('text!../templates/slider1-5.html');			// 5 - Slider von 1-5 - mehrere pro Seite
 	var s7Template = require('text!../templates/slider1-7.html');			// 7 - Slider von 1-7 - mehrere pro Seite
@@ -43,6 +44,7 @@ define(function(require) {
 			if (!this.tpl) {
 				switch (this.art) {
 					case  1: this.tpl = mtTemplate; break;
+					case  2: this.tpl = jnTemplate; break;
 					case  3: this.tpl = wtTemplate; break;
 					case  5: this.tpl = s5Template; break;
 					case  6: this.tpl = b5Template; break;

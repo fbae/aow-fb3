@@ -67,7 +67,20 @@ define( function( require ) {
 			for (var i=0; i<fArr.length; i++) {
 				// falls ein Slider benutzt wird: ein onSlidestop setzen, damit die Daten sofort eingetragen werden
 				var frage = f.get(fArr[i]).attributes;
+				var kodierung = f.zeitpunkt() + frage.id;
 				switch (frage.art) {
+					case 2: // für flipswitch die a.href="#" Weiterleitung ausschalten und die Antwort setzen
+						this.$el.find('#' + kodierung )
+							.on( 'change', function( event ) {
+//								this.find('a').attr('href','');
+console.debug('a#',this,event);
+								fb3.setzeAntwort({
+									'kodierung': event.target.id,
+									'zeit': new Date(event.timeStamp),
+									'antw': $( this ).flipswitch().val()
+								});
+							})
+						break;
 					case 5:
 					case 6:
 					case 7:
@@ -75,7 +88,6 @@ define( function( require ) {
 					case 20:
 					case 100:
 					case 715:
-						var kodierung = f.zeitpunkt() + frage.id;
 						this.$el.find( '#' + kodierung ).on( 'slidestop', function( event ) {
 							fb3.setzeAntwort({
 								'kodierung': event.target.id,
