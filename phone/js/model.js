@@ -631,7 +631,7 @@ console.debug('setzeAntwort', antwortO);
 	// brStart in die Datenbank Tabelle W eintragen
 	$('#ww2').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
-			.put({'work':new Date(), 'device':fb3.get('device')})
+			.put({'break':new Date(), 'device':fb3.get('device')})
 			.onsuccess = function(e) {
 				// wie oben - zurück-Button löscht den letzten Eintrag 
 				$('#w2w').on('click',null,e.target.result,function(evt) {
