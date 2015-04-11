@@ -1,0 +1,9 @@
+<fieldset>
+	<div id="_<%= kodierung %>" class="ui-field-contain">
+		<label for="<%= kodierung %>"><%= txt %></label>
+		<select id="<%= kodierung %>" data-role="flipswitch">
+			<option value="true" <% if (ant == 'true') print('selected=""'); %>>Ja</option>
+			<option value="false" <% if (ant == 'false') print('selected=""'); %>>Nein</option>
+		</select>
+	</div>
+</fieldset>

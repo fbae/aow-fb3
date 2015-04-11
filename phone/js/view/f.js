@@ -61,25 +61,35 @@ define( function( require ) {
 
 			// Template rendern
 			this.template = _.template(fViewTemplate)(fO);
-			// HTML in DOM einhängen
+			// HTML in DOM einhängen und nachbearbeiten
 			this.$el.html(this.template).page();
+			this.$el.find( ':jqmData(role=controlgroup)' ).controlgroup();
 
+			// Besonderheiten einarbeiten
 			for (var i=0; i<fArr.length; i++) {
 				// falls ein Slider benutzt wird: ein onSlidestop setzen, damit die Daten sofort eingetragen werden
 				var frage = f.get(fArr[i]).attributes;
 				var kodierung = f.zeitpunkt() + frage.id;
 				switch (frage.art) {
-					case 2: // für flipswitch die a.href="#" Weiterleitung ausschalten und die Antwort setzen
+					case 2: // für flipswitch
+						// die a.href="#" Weiterleitung ausschalten
+						this.$el.find('#_' + kodierung) // im umgebenden div.ui-field-contain
+							.on( 'change', function( evt, ui ) {
+								$(evt.target.parentNode)
+									.addClass('flipswitch-selectedOnce');
+								$(evt).parent('div')
+									.find('a').attr('href','#nichts');
+							})
+							.find( '.ui-flipswitch a' ).attr('href','#nichts');
+						// die Antwort setzen
 						this.$el.find('#' + kodierung )
-							.on( 'change', function( event ) {
-//								this.find('a').attr('href','');
-console.debug('a#',this,event);
+							.on( 'change', function( evt ) {
 								fb3.setzeAntwort({
-									'kodierung': event.target.id,
-									'zeit': new Date(event.timeStamp),
+									'kodierung': evt.target.id,
+									'zeit': new Date(evt.timeStamp),
 									'antw': $( this ).flipswitch().val()
 								});
-							})
+							});
 						break;
 					case 5:
 					case 6:
@@ -106,10 +116,6 @@ console.debug('a#',this,event);
 					default: // nichts zu tun
 				}
 			}
-			this.$el.find( ':jqmData(role=controlgroup)' ).controlgroup();
-			this.$el.page();
-
-
 
 			// Maintains chainability
 			return this;

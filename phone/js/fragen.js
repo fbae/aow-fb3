@@ -248,10 +248,10 @@ define(function( require ) {
 			this.add(new Frage({id:'DANGER_QUAL2', art:2, txt:'Haben Sie heute in einem Arbeitstempo gearbeitet, von dem Sie wissen, dass es Ihnen nicht gut tut?'}));
 
 			//Haben Sie heute Genussmittel/Substanzen (z.B. Alkohol, Nikotin oder Medikamente) konsumiert, um nach der Arbeit 
-			this.add(new Frage({id:'DRUG_RELAX1', art:2, txt:'&hellip; besser abschalten zu können?'}));
-			this.add(new Frage({id:'DRUG_RELAX2', art:2, txt:'&hellip; besser einschlafen zu können?'}));
-			this.add(new Frage({id:'DRUG_STIMU1', art:2, txt:'&hellip; besser bewältigen zu können?'}));
-			this.add(new Frage({id:'DRUG_STIMU2', art:2, txt:'&hellip; leistungsfähiger zu sein?'}));
+			this.add(new Frage({id:'DRUG_RELAX1', art:2, txt:'&hellip; nach der Arbeit besser abschalten zu können?'}));
+			this.add(new Frage({id:'DRUG_RELAX2', art:2, txt:'&hellip; nach der Arbeit besser einschlafen zu können?'}));
+			this.add(new Frage({id:'DRUG_STIMU1', art:2, txt:'&hellip; Ihre hohe Arbeitsmenge besser bewältigen zu können?'}));
+			this.add(new Frage({id:'DRUG_STIMU2', art:2, txt:'&hellip; bei der Arbeit leistungsfähiger zu sein?'}));
 
 			this.add(new Frage({id:'SMOK', art:2, txt:'Haben Sie heute geraucht?'}));
 			this.add(new Frage({id:'ALC', art:2, txt:'Haben Sie heute Alkohol getrunken?'}));
@@ -290,20 +290,17 @@ define(function( require ) {
 					{v:FView, f:['JOBSAT']}
 				],
 				evening:[
-/*					{v:FView, f:['OVERTI','FORGET','ERR']},
+					{v:FView, f:['OVERTI','FORGET','ERR']},
 					{v:FView, f:['WORR1E','WORR2E']},
 					{v:FView, f:['IRR_K1', 'IRR_K2', 'IRR_E1']},
 					{v:FView, f:['IRR_K3', 'IRR_E2', 'IRR_E3']},
 					{v:FView, f:['IRR_E4', 'IRR_E5', 'REC_E1']},
 					{v:FView, f:['REC_E2', 'REC_E3', 'REC_E4']},
-					{v:FView, f:['REC_M1', 'REC_M2', 'REC_M3', 'REC_M4']},*/
-					{v:FView, f:['DANGER_QUANT1', 'DANGER_QUANT2', 'DANGER_QUAL1', 'DANGER_QUAL2', 'DRUG_RELAX1', 'DRUG_RELAX2', 'DRUG_STIMU1', 'DRUG_STIMU2', 'SMOK', 'ALC']},
-/*					{v:FView, f:[]},
-					{v:FView, f:[]},
-					{v:FView, f:[]},
-					{v:FView, f:[]},
-					{v:FView, f:[]},
-					*/
+					{v:FView, f:['REC_M1', 'REC_M2', 'REC_M3', 'REC_M4']},
+					{v:FView, f:['DANGER_QUANT1', 'DANGER_QUANT2', 'DANGER_QUAL1']},
+					{v:FView, f:['DANGER_QUAL2', 'SMOK', 'ALC']},
+					{v:FView, f:['DRUG_RELAX1', 'DRUG_RELAX2'], heading:'Haben Sie heute Genussmittel / Substanzen (z.B. Alkohol, Nikotin oder Medikamente) konsumiert, um '},
+					{v:FView, f:['DRUG_STIMU1', 'DRUG_STIMU2'], heading:'Haben Sie heute Genussmittel / Substanzen (z.B. Alkohol, Nikotin oder Medikamente) konsumiert, um '},
 				],
 
 				STI:[

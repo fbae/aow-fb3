@@ -55,3 +55,7 @@ div.smiley7btn {
 div.smiley7btn label {
 	min-width:8px;
 }
+
+div.flipswitch-selectedOnce {
+	background-color:#38c !important;
+}
