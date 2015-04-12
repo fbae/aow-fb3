@@ -20,7 +20,7 @@ define( function( require) {
 			// When there is no hash bang on the url, the home method is called
 			'': 'home',
 			'nichts': function(){},
-//TODO			'S': 'speichern',
+			'S': 'speichern',
 			'settings': 'settings',
 
 			'M': 'ablaufM',
@@ -37,6 +37,7 @@ define( function( require) {
 			'A': 'ablaufA',
 			'E': 'ablaufE',
 
+			'awz': function() {fb3.antwortenWZusammenfassen();},
 			// When #f? is on the url, the  method is called
 			'f?:nr': 'frage'
 		},

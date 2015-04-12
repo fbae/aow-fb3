@@ -447,6 +447,62 @@ console.debug('setzeAntwort', antwortO);
 			};
 		},
 
+		antwortenWZusammenfassen: function() {
+			/* überarbeite antwortenW, indem passende Einträge zusammengefasst werden, 
+			 * dort neu im Datenbankformat gespeichert werden und die passenden Einträge anschließend
+			 * gelöscht werden
+			 */
+			var self = this;
+			var idArr = new Array(); // speichert die zu löschenden Einträge
+			var tabName = 'antwortenW';
+
+			// Tabelle W in Array übertragen
+			var wArr = new Array(); // hält Arbeitskopie der Tabelle W
+			var w2Arr = new Array(); // hält die bearbeiteten und zu speichernden Datensätze
+			var req = self.db.transaction(tabName).objectStore(tabName).openCursor();
+			req.onerror = function(e) {
+				console.warn('Fehler - '+tabName+' konnte nicht ausgelesen werden. ',e);
+			}
+			req.onsuccess = function(e) {
+				var cursor = e.target.result;
+				if (cursor) {
+					wArr.push(cursor.value);
+					cursor.continue();
+				} else {
+					// alle Daten sind übertragen 
+
+					// suche workend und vorheriges workstart
+					var weArr = _.filter(wArr,function(eintrag){
+						return _.has(eintrag, 'workstart') ||  _.has(eintrag, 'workend');
+					});
+					var weObj = new Object();
+					_.each(weArr,function(val,key,list){
+						if (_.has(val, 'workend')) {
+ 							if ( _.has(weObj, 'start')) {
+ 								// vervollständigen und abspeichern
+								weObj.end=val.workend;
+								w2Arr.push(weObj);
+								weObj = new Object();
+								idArr.push(val.id);
+ 							} // else: workend kommt vor dem workstart -> das kann nicht sein 
+						} else {
+							_.extend(weObj, {
+								'start': val.workstart,
+								'device': val.device,
+								'person': val.person,
+								'art':'work'
+							});
+							idArr.push(val.id);
+						}
+					});
+console.debug('awz we',weObj,w2Arr,idArr);
+					
+					// suche breakend und vorheriges break
+					// suche intend und vorheriges intstart und nachfolgende Fragen
+				} // ende - Tabelle W überarbeiten
+			}
+		},
+
 		naechsterWerktag: function() {
 			var jetzt = new Date();
 			if (this.has('schichtbeginn'))
@@ -608,13 +664,13 @@ console.debug('setzeAntwort', antwortO);
 	// WorkStart in die Datenbank Tabelle W eintragen
 	$('#W').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
-			.put({'workstart':new Date(), 'device':fb3.get('device')})
+			.put({'workstart':new Date(), 'device':fb3.get('device'), 'person':fb3.get('person')})
 			.onerror = function(e) { console.warn('Fehler: #W click (workstart) hat keinen IDB Eintrag hinterlassen ',e);};
 	}); 
 	// intStart in die Datenbank Tabelle W eintragen
 	$('#ww1').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
-			.put({'intstart':new Date(), 'device':fb3.get('device')})
+			.put({'intstart':new Date(), 'device':fb3.get('device'), 'person':fb3.get('person')})
 			.onsuccess = function(e) {
 				// Eintrag wieder löschen, wenn auf zurück gegangen wird - e.target.result speichert die neu erstellte id
 				$('#w1w').on('click',null,e.target.result,function(evt) {
@@ -625,7 +681,7 @@ console.debug('setzeAntwort', antwortO);
 	// intEnd in die Datenbank Tabelle W eintragen
 	$('#w1q').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
-			.put({'intend':new Date(), 'device':fb3.get('device')})
+			.put({'intend':new Date(), 'device':fb3.get('device'), 'person':fb3.get('person')})
 			.onsuccess = function(){
 				$('#w1w').off('click');
 			}
@@ -633,7 +689,7 @@ console.debug('setzeAntwort', antwortO);
 	// brStart in die Datenbank Tabelle W eintragen
 	$('#ww2').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
-			.put({'break':new Date(), 'device':fb3.get('device')})
+			.put({'break':new Date(), 'device':fb3.get('device'), 'person':fb3.get('person')})
 			.onsuccess = function(e) {
 				// wie oben - zurück-Button löscht den letzten Eintrag 
 				$('#w2w').on('click',null,e.target.result,function(evt) {
@@ -644,7 +700,7 @@ console.debug('setzeAntwort', antwortO);
 	// brEnd eintragen
 	$('#w2e').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
-			.put({'breakend':new Date(), 'device':fb3.get('device')})
+			.put({'breakend':new Date(), 'device':fb3.get('device'), 'person':fb3.get('person')})
 			.onsuccess = function(){
 				$('#w2w').off('click');
 			}
@@ -652,7 +708,7 @@ console.debug('setzeAntwort', antwortO);
 	// WorkEnd in die Datenbank Tabelle W eintragen
 	$('#wN').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
-			.put({'workend':new Date(), 'device':fb3.get('device')})
+			.put({'workend':new Date(), 'device':fb3.get('device'), 'person':fb3.get('person')})
 	}); 
 
 	return Fb3Model;
