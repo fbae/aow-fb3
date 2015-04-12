@@ -257,6 +257,19 @@ define(function( require ) {
 			this.add(new Frage({id:'ALC', art:2, txt:'Haben Sie heute Alkohol getrunken?'}));
 
 
+			this.add(new Frage({id:'STRAT_INT1', art:5, txt:'Heute bearbeitete ich Aufgaben oberflächlicher als sonst.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
+			this.add(new Frage({id:'STRAT_INT2', art:5, txt:'Heute strukturierte ich die Aufgaben des Tages um und bearbeite die wichtigsten Aufgaben zuerst.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
+			this.add(new Frage({id:'STRAT_INT3', art:5, txt:'Heute versuchte ich, weitere Unterbrechungen zu ignorieren.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
+			this.add(new Frage({id:'STRAT_INT4', art:5, txt:'Heute bat ich meine Kollegen um Hilfe.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
+	
+			this.add(new Frage({ id: 'HO', art:1, txt: 'Wo haben Sie heute gearbeitet?',
+				bes: [ 
+						['Büro',1],
+						['zu Hause',2],
+						['Dienstreise',3],
+				]
+			}));
+
 			this.ablauf = {
 				morning:[
 					{v:MtView, f:['PSQI7']},
@@ -281,15 +294,18 @@ define(function( require ) {
 					{v:MtView, f:['CONT2']},
 					{v:MtView, f:['CONT3']},
 					{v:FView, f:['SUPPO1', 'SUPPO2', 'FULLFI']},
-					{v:FView, f:['QUAL', 'WEDE1', 'WEDE2']},
-					{v:FView, f:['WEVI3', 'WEAB1', 'WEDE3']},
-					{v:FView, f:['WEAB2', 'WEAB3', 'WEVI1']},
-					{v:FView, f:['WEVI2', 'WD1', 'WD2']},
-					{v:FView, f:['WD3', 'WD4', 'WD5']},
-					{v:FView, f:['WORR1', 'WORR2']},
+					{v:FView, f:['STRAT_INT1', 'STRAT_INT2', 'STRAT_INT3']},
+					{v:FView, f:['STRAT_INT4', 'QUAL', 'WEDE1']},
+					{v:FView, f:['WEDE2', 'WEVI3', 'WEAB1']},
+					{v:FView, f:['WEDE3', 'WEAB2', 'WEAB3']},
+					{v:FView, f:['WEVI1', 'WEVI2', 'WD1']},
+					{v:FView, f:['WD2', 'WD3', 'WD4']},
+					{v:FView, f:['WD5', 'WORR1', 'WORR2']},
 					{v:FView, f:['JOBSAT']}
+
 				],
 				evening:[
+					{v:MtView,f:['HO']},
 					{v:FView, f:['OVERTI','FORGET','ERR']},
 					{v:FView, f:['WORR1E','WORR2E']},
 					{v:FView, f:['IRR_K1', 'IRR_K2', 'IRR_E1']},

@@ -297,13 +297,15 @@ console.debug('setzeAntwort', antwortO);
 						if (_.isDate(v)) {
 							// Datum formatieren
 							l[k] = v.toMysqlFormat();
-						} if (/[34]UE[123]/.test(k) && _.isNumber(v)) {
+/*
+ * } if (/[34]UE[123]/.test(k) && _.isNumber(v)) {
 							// Zeit formatieren (UE1,2,3)
 							var std = Math.floor(v);
 							var min = Math.floor((v - G) * 60);
 							l[k] = std + ':' + min + ':00';
-						} if (/1SL2/.test(k) && _.isNumber(v)) {
-							// SL2 kodiert die Zeit in Viertelstunden -> 2.75 ist dann also 11
+*/
+						} if (/OVERTI/.test(k) && _.isNumber(v)) {
+							// OVERTI kodiert die Zeit in Viertelstunden -> 2.75 ist dann also 11
 							l[k] = v * 4;
 						}	else {
 							if (_.isObject(v) && _.isDate(v.zeit)) {
@@ -322,7 +324,7 @@ console.debug('setzeAntwort', antwortO);
 								x.overrideMimeType("application/json;charset=UTF-8");
 							}
 						},
-						url: 'api/putData.php',
+						url: 'api/putData3.php',
 						success: function(data) {
 							if (data.status == 'erfolg') {
 								/* löschen des Eintrages, falls data.status == erfolg
@@ -356,8 +358,8 @@ console.debug('setzeAntwort', antwortO);
 
 			self.saveTab('antwortenM', errA);
 			self.saveTab('antwortenW', errA);
-			self.saveTab('antwortenN', errA);
 			self.saveTab('antwortenA', errA);
+			self.saveTab('antwortenE', errA);
 
 			// alle log-Einträge zusammenpacken und verschicken
 			var log = new Array();
@@ -391,7 +393,7 @@ console.debug('setzeAntwort', antwortO);
 								x.overrideMimeType("application/json;charset=UTF-8");
 							}
 						},
-						url: 'api/putData.php',
+						url: 'api/putData3.php',
 						success: function(data) {
 							if (data.status == 'erfolg') {
 								/* löschen des Eintrages, falls data.status == erfolg
@@ -642,7 +644,7 @@ console.debug('setzeAntwort', antwortO);
 	// brEnd eintragen
 	$('#w2e').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
-			.put({'intend':new Date(), 'device':fb3.get('device')})
+			.put({'breakend':new Date(), 'device':fb3.get('device')})
 			.onsuccess = function(){
 				$('#w2w').off('click');
 			}
