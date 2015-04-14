@@ -452,14 +452,14 @@ console.debug('setzeAntwort', antwortO);
 			 * dort neu im Datenbankformat gespeichert werden und die passenden Einträge anschließend
 			 * gelöscht werden
 			 */
-			var self = this;
-			var idArr = new Array(); // speichert die zu löschenden Einträge
 			var tabName = 'antwortenW';
 
+			var self = this;
 			// Tabelle W in Array übertragen
 			var wArr = new Array(); // hält Arbeitskopie der Tabelle W
 			var w2Arr = new Array(); // hält die bearbeiteten und zu speichernden Datensätze
-			var req = self.db.transaction(tabName).objectStore(tabName).openCursor();
+			var oStore = self.db.transaction(tabName,'readwrite').objectStore(tabName);
+			var req = oStore.openCursor();
 			req.onerror = function(e) {
 				console.warn('Fehler - '+tabName+' konnte nicht ausgelesen werden. ',e);
 			}
@@ -471,34 +471,70 @@ console.debug('setzeAntwort', antwortO);
 				} else {
 					// alle Daten sind übertragen 
 
-					// suche workend und vorheriges workstart
-					var weArr = _.filter(wArr,function(eintrag){
-						return _.has(eintrag, 'workstart') ||  _.has(eintrag, 'workend');
-					});
-					var weObj = new Object();
-					_.each(weArr,function(val,key,list){
-						if (_.has(val, 'workend')) {
- 							if ( _.has(weObj, 'start')) {
- 								// vervollständigen und abspeichern
-								weObj.end=val.workend;
-								w2Arr.push(weObj);
-								weObj = new Object();
-								idArr.push(val.id);
- 							} // else: workend kommt vor dem workstart -> das kann nicht sein 
-						} else {
-							_.extend(weObj, {
-								'start': val.workstart,
-								'device': val.device,
-								'person': val.person,
-								'art':'work'
-							});
-							idArr.push(val.id);
+					// funktion deklarieren
+					var fasseZusammen = function(startStr, endStr, artStr) {
+						var weArr = _.filter(wArr,function(eintrag){
+							return _.has(eintrag, startStr) ||  _.has(eintrag, endStr);
+						});
+						var weObj = new Object();
+						_.each(weArr,function(val,key,list){
+							if (_.has(val, endStr)) {
+								if ( _.has(weObj, 'start')) {
+									// vervollständigen und abspeichern
+									weObj.end = val[endStr];
+									weObj.eId = val.id;
+									// falls ein Iterrupt gesucht wird, den nachfolgenden Datensatz hinzufügen
+									if (artStr === 'inter') {
+										var nachfolgendeFragenObj = _.find(wArr,function(eintrag){ return eintrag.id == val.id+1; });
+										if (_.has(nachfolgendeFragenObj,'tag')) {
+											_.extend(weObj, nachfolgendeFragenObj);
+										}
+									}
+									w2Arr.push(weObj);
+									weObj = new Object();
+								} // else: workend kommt vor dem workstart -> das kann nicht sein und wird ignoriert
+							} else {
+								if (!_.isEmpty(weObj)) {
+									// weiteres workstart ohne workend trotzdem speichern
+									w2Arr.push(weObj);
+									weObj = new Object();
+								}
+								_.extend(weObj, {
+									'start': val[startStr],
+									'device': val.device,
+									'person': val.person,
+									'art': artStr,
+									'sId': val.id
+								});
+							}
+						});
+						if (!_.isEmpty(weObj)) {
+							// ohne workend trotzdem speichern
+							w2Arr.push(weObj);
+							weObj = new Object();
 						}
-					});
-console.debug('awz we',weObj,w2Arr,idArr);
-					
+	console.debug('awz w2',w2Arr);
+						// Zusammenfassung speichern und bei Erfolg id's löschen
+						_.each(w2Arr, function(val, key, list){
+							var req = oStore.put(val);
+							req.onerror = function(e) {
+								console.warn('Fehler - Zusammenfassung von '+tabName+' - es konnte '+artStr+'nicht abgespeichert werden. ',e);
+							}
+							req.onsuccess = function(e) {
+//								oStore.delete(val.sId);
+//								if (_.has(val,'eId')) oStore.delete(val.eId);
+//								if (_.has(val,'id'))  oStore.delete(val.id);
+							}
+						});
+					} // ende fasseZusammen()
+
+					// suche workend und vorheriges workstart
+					fasseZusammen('workstart','workend','work');
 					// suche breakend und vorheriges break
+					fasseZusammen('break','breakend','break');
 					// suche intend und vorheriges intstart und nachfolgende Fragen
+					fasseZusammen('intstart','intend','inter');
+
 				} // ende - Tabelle W überarbeiten
 			}
 		},
