@@ -287,6 +287,7 @@ console.debug('setzeAntwort', antwortO);
 
 		saveTab: function(tabName, errors) {
 			var self = this;
+console.debug('saveTab aufgerufen mit tabName: '+tabName);
 			// Antworten auslesen
 			var req = self.db.transaction(tabName).objectStore(tabName).openCursor();
 			req.onsuccess = function(e) {
@@ -357,7 +358,7 @@ console.debug('setzeAntwort', antwortO);
 			}, 5000);
 
 			self.saveTab('antwortenM', errA);
-			self.saveTab('antwortenW', errA);
+			self.antwortenWZusammenfassen(errA);
 			self.saveTab('antwortenA', errA);
 			self.saveTab('antwortenE', errA);
 
@@ -428,6 +429,9 @@ console.debug('setzeAntwort', antwortO);
 			}
 
 			// Wenn alle Daten weg sind den SpeichernAlle-Button ausblenden
+			// TODO: da das Speichern nebenläufig ist, steht hier noch nicht fest, ob alles bearbeitet wurde
+			//			es müsste also ein callback eingerichtet werden, der feststellen kann, ob alle Speichervorgänge abgeschlossen sind
+			//			und dann den Button ausblendet.
 			var antA = ['antwortenM','antwortenW','antwortenE','antwortenA','log'];
 			var t = self.db.transaction(antA);
 			var anz = 0;
@@ -447,17 +451,17 @@ console.debug('setzeAntwort', antwortO);
 			};
 		},
 
-		antwortenWZusammenfassen: function() {
+		antwortenWZusammenfassen: function(errA) {
 			/* überarbeite antwortenW, indem passende Einträge zusammengefasst werden, 
 			 * dort neu im Datenbankformat gespeichert werden und die passenden Einträge anschließend
 			 * gelöscht werden
+			 * cb - wird ohne Parameter aufgerufen, nachdem zusammengefasst wurde (callback)
 			 */
 			var tabName = 'antwortenW';
-
+console.debug('antwortenWZusammenfassen aufgerufen');
 			var self = this;
 			// Tabelle W in Array übertragen
 			var wArr = new Array(); // hält Arbeitskopie der Tabelle W
-			var w2Arr = new Array(); // hält die bearbeiteten und zu speichernden Datensätze
 			var oStore = self.db.transaction(tabName,'readwrite').objectStore(tabName);
 			var req = oStore.openCursor();
 			req.onerror = function(e) {
@@ -473,6 +477,7 @@ console.debug('setzeAntwort', antwortO);
 
 					// funktion deklarieren
 					var fasseZusammen = function(startStr, endStr, artStr) {
+						var w2Arr = new Array(); // hält die bearbeiteten und zu speichernden Datensätze
 						var weArr = _.filter(wArr,function(eintrag){
 							return _.has(eintrag, startStr) ||  _.has(eintrag, endStr);
 						});
@@ -488,6 +493,8 @@ console.debug('setzeAntwort', antwortO);
 										var nachfolgendeFragenObj = _.find(wArr,function(eintrag){ return eintrag.id == val.id+1; });
 										if (_.has(nachfolgendeFragenObj,'tag')) {
 											_.extend(weObj, nachfolgendeFragenObj);
+											weObj.nId = weObj.id;
+											delete weObj.id;
 										}
 									}
 									w2Arr.push(weObj);
@@ -517,24 +524,26 @@ console.debug('setzeAntwort', antwortO);
 						// Zusammenfassung speichern und bei Erfolg id's löschen
 						_.each(w2Arr, function(val, key, list){
 							var req = oStore.put(val);
+	console.debug('awt puted',val);
 							req.onerror = function(e) {
 								console.warn('Fehler - Zusammenfassung von '+tabName+' - es konnte '+artStr+'nicht abgespeichert werden. ',e);
 							}
 							req.onsuccess = function(e) {
-//								oStore.delete(val.sId);
-//								if (_.has(val,'eId')) oStore.delete(val.eId);
-//								if (_.has(val,'id'))  oStore.delete(val.id);
+								oStore.delete(val.sId);
+								if (_.has(val,'eId')) oStore.delete(val.eId);
+								if (_.has(val,'nId')) oStore.delete(val.nId);
 							}
 						});
 					} // ende fasseZusammen()
 
+					// suche intend und vorheriges intstart und nachfolgende Fragen
+					fasseZusammen('intstart','intend','inter');
 					// suche workend und vorheriges workstart
 					fasseZusammen('workstart','workend','work');
 					// suche breakend und vorheriges break
 					fasseZusammen('break','breakend','break');
-					// suche intend und vorheriges intstart und nachfolgende Fragen
-					fasseZusammen('intstart','intend','inter');
 
+					setTimeout(self.saveTab('antwortenW', errA),1500);
 				} // ende - Tabelle W überarbeiten
 			}
 		},

@@ -7,11 +7,14 @@ define(function(require) {
 	var _ = require('underscore');
 	var Backbone = require('backbone');
 
-	var WView = Backbone.View.extend( {
+	var WtView = Backbone.View.extend( {
 		el: '#f',
 
 		initialize: function() {
-			this.$el.off('click','a.mtAntwort').off('pageshow');
+			this.$el
+				.off('click','a.wtSpeichern')
+				.off('click','a.mtAntwort')
+				.off('pageshow');
 			var f = this.collection; // Fragen
 			// aktuelle Frage ermitteln
 			var ablauf = f.ablauf[f.typ][f.akt];
@@ -38,8 +41,15 @@ define(function(require) {
 			});
 		},
 		speichern: function(evt) {
-			console.debug('w speichern', fb3.get('antworten'));
-			fb3.speichereAntworten();
+console.debug('w speichern', fb3.get('antworten'));
+			/* scheinbar wird beim erneuten rendern auch der alte event noch ausgeführt,
+			 * deshalb wird er vor dem Speichern gelöscht -> zur nächsten Seite gegangen und
+			 * später beim erneuten Aufruf neu gesetzt.
+			 */
+			this.$el
+				.off('click','a.wtSpeichern')
+				.off('click','a.mtAntwort');
+			if (fb3.get('antworten'))	fb3.speichereAntworten();
 		},
 
 		render: function() {
@@ -49,20 +59,11 @@ define(function(require) {
 			this.$el.html(this.template);
 			this.$el.find( ":jqmData(role=listview)" ).listview(); // jqm verbessern
 			this.$el.page();
-			// verbessern: http://jquerymobile.com/demos/1.2.0/docs/pages/page-dynamic.html
-
-			// in 'SOU' muss die Reihenfolge geändert werden 
-			// (die folgende Frage 'MED' nicht aufgerufen, falls ein Arbeitsmittel gestört hat)
-			// dann wird die übernächste Frage angezeigt.
-			if (this.fO.kodierung == 'SOU') {
-				var ele = this.$el.find('#SOU5');
-				console.debug('SOU 5 ändern',ele,this.fO);
-			}
 
 			// Maintains chainability
 			return this;
 		}
 	} );
 	// Returns the View class
-	return WView;
+	return WtView;
 } );

@@ -15,6 +15,9 @@ define( function( require ) {
 				.off('pageshow')
 				.on('pageshow',
 						function(evt){
+							// die a.href="#" Weiterleitung in flipswitches ausschalten
+							thisEl.find( 'a[href="#"]' ).attr('href','#nichts');
+							// TODO: Formatierung der Sliderbeschriftung anpassen
 							var slider = thisEl.find( 'div.ui-slider div' );
 							if (slider && slider.width() > 0) {
 								var sliderHandle = thisEl.find( '.ui-slider-handle');
@@ -72,15 +75,11 @@ define( function( require ) {
 				var kodierung = f.zeitpunkt() + frage.id;
 				switch (frage.art) {
 					case 2: // für flipswitch
-						// die a.href="#" Weiterleitung ausschalten
 						this.$el.find('#_' + kodierung) // im umgebenden div.ui-field-contain
 							.on( 'change', function( evt, ui ) {
 								$(evt.target.parentNode)
 									.addClass('flipswitch-selectedOnce');
-								$(evt).parent('div')
-									.find('a').attr('href','#nichts');
-							})
-							.find( '.ui-flipswitch a' ).attr('href','#nichts');
+							});
 						// die Antwort setzen
 						this.$el.find('#' + kodierung )
 							.on( 'change', function( evt ) {
