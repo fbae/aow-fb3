@@ -11,4 +11,4 @@
 *.php
 *.directory
 ttt/*
-backend/*
+phone/api

@@ -99,7 +99,7 @@ define(function( require ) {
 						['ja, mehr als drei Mal',1]
 				]
 			}));
-			this.add(new Frage({ id: 'ISI', art:1, txt: 'Bitte bewerten Sie den Schweregrad Ihrer Schlafprobleme während dieser Nacht (Einschlagschwierigkeiten, Durschschlafschwierigkeiten, Probleme wegen zu frühen Aufwachens).',
+			this.add(new Frage({ id: 'ISI', art:1, txt: 'Bitte bewerten Sie den Schweregrad Ihrer Schlafprobleme während dieser Nacht (Einschlafschwierigkeiten, Durschschlafschwierigkeiten, Probleme wegen zu frühen Aufwachens).',
 				bes: [ 
 						['keine',1],
 						['leicht',2],
@@ -142,19 +142,18 @@ define(function( require ) {
 
 			this.add(new Frage({id:'TLX1', art:20, txt:'geistigen Anforderungen?', lTxt:'sehr niedrig', rTxt:'sehr hoch'}));
 			this.add(new Frage({id:'TLX2', art:20, txt:'körperlichen Anforderungen?', lTxt:'sehr gering', rTxt:'sehr hoch'}));
-			this.add(new Frage({id:'TLX3', art:20, txt:'geistigen Anforderungen?', lTxt:'sehr niedrig', rTxt:'sehr hoch'}));
-			this.add(new Frage({id:'TLX4', art:20, txt:'Wie hoch war das Tempo, mit dem Sie die einzelnen Aufgaben bewältigen mussten?', lTxt:'sehr niedrig', rTxt:'sehr hoch'}));
-			this.add(new Frage({id:'TLX5', art:20, txt:'Wie erfolgreich haben Sie Ihre Aufgaben heute Ihrer Meinung nach durchgeführt?', lTxt:'perfekter Erfolg', rTxt:'Misserfolg'}));
-			this.add(new Frage({id:'TLX6', art:20, txt:'Wie sehr mussten Sie sich anstrengen, um Ihre Leistung zu erreichen?', lTxt:'sehr wenig', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'TLX7', art:20, txt:'Wie verunsichert, entmutigt, gereizt und verärgert waren Sie am heutigen Arbeitstag?', lTxt:'sehr wenig', rTxt:'sehr stark'}));
-			this.add(new Frage({id:'TLX8', art:20, txt:'Wie gestresst fühlten Sie sich heute?', lTxt:'sehr wenig', rTxt:'sehr stark'}));
+			this.add(new Frage({id:'TLX3', art:20, txt:'Wie hoch war das Tempo, mit dem Sie die einzelnen Aufgaben bewältigen mussten?', lTxt:'sehr niedrig', rTxt:'sehr hoch'}));
+			this.add(new Frage({id:'TLX4', art:20, txt:'Wie erfolgreich haben Sie Ihre Aufgaben heute Ihrer Meinung nach durchgeführt?', rTxt:'perfekter Erfolg', lTxt:'Misserfolg'}));
+			this.add(new Frage({id:'TLX5', art:20, txt:'Wie sehr mussten Sie sich anstrengen, um Ihre Leistung zu erreichen?', lTxt:'sehr wenig', rTxt:'sehr stark'}));
+			this.add(new Frage({id:'TLX6', art:20, txt:'Wie verunsichert, entmutigt, gereizt und verärgert waren Sie am heutigen Arbeitstag?', lTxt:'sehr wenig', rTxt:'sehr stark'}));
+			this.add(new Frage({id:'TLX7', art:20, txt:'Wie gestresst fühlten Sie sich heute?', lTxt:'sehr wenig', rTxt:'sehr stark'}));
 
 			this.add(new Frage({id:'TPRESS1', art:5, txt:'Ich stand heute unter Zeitdruck.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'TPRESS2', art:5, txt:'Ich musste heute schneller arbeiten, als ich es normalerweise tue, um meine Arbeit zu schaffen.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'TPRESS3', art:5, txt:'Bei meiner Arbeit wurde heute ein hohes Arbeitstempo verlangt.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 
 			this.add(new Frage({id:'SITCON1', art:5, txt:'Ich musste heute mit Unterlagen und Informationen arbeiten, die unvollständig und veraltet waren.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
-			this.add(new Frage({id:'SITCON2', art:5, txt:'Ich musste heute viel Zeit damit vertan, mir Informationen, Material oder Werkzeug zu beschaffen.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
+			this.add(new Frage({id:'SITCON2', art:5, txt:'Ich musste heute viel Zeit damit vertun, mir Informationen, Material oder Werkzeug zu beschaffen.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'SITCON3', art:5, txt:'Ich musste heute mit Material, Arbeitsmitteln oder Werkzeug arbeiten, die nicht viel taugten.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 
 			this.add(new Frage({ id: 'CONT1', art:1, txt: 'Wenn Sie Ihre Tätigkeit heute betrachten, inwieweit konnten Sie die Reihenfolge der Arbeitsschritte selbst festlegen?',
@@ -253,7 +252,7 @@ define(function( require ) {
 			this.add(new Frage({id:'DRUG_STIMU1', art:2, txt:'&hellip; Ihre hohe Arbeitsmenge besser bewältigen zu können?'}));
 			this.add(new Frage({id:'DRUG_STIMU2', art:2, txt:'&hellip; bei der Arbeit leistungsfähiger zu sein?'}));
 
-			this.add(new Frage({id:'SMOK', art:2, txt:'Haben Sie heute geraucht?'}));
+			this.add(new Frage({id:'SMOK', art:2, txt:'<p>Folgende zwei Fragen sind für die Auswertung der Herzrate bedeutsam.</p>Haben Sie heute geraucht?'}));
 			this.add(new Frage({id:'ALC', art:2, txt:'Haben Sie heute Alkohol getrunken?'}));
 
 
@@ -273,6 +272,7 @@ define(function( require ) {
 			this.ablauf = {
 				morning:[
 					{v:MtView, f:['PSQI7']},
+					{v:MtView, f:['PSQI2']},
 					{v:MtView, f:['PSQI4']},
 					{v:MtView, f:['PSQI11']},
 					{v:MtView, f:['ISI']},
@@ -285,9 +285,9 @@ define(function( require ) {
 					{v:WtView, f:['MED']},
 				],
 				afterWork:[
-					{v:FView, f:['TLX1', 'TLX2', 'TLX3', 'TLX4'], heading:'Wie hoch waren heute die &hellip;'},
-					{v:FView, f:['TLX5', 'TLX6']},
-					{v:FView, f:['TLX7', 'TLX8']},
+					{v:FView, f:['JOBSAT','TLX7']}
+					{v:FView, f:['TLX1', 'TLX2', 'TLX3'], heading:'Wie hoch waren heute die &hellip;'},
+					{v:FView, f:['TLX4','TLX5', 'TLX6']},
 					{v:FView, f:['TPRESS1', 'TPRESS2', 'TPRESS3'], heading: 'Inwiefern stimmen Sie den folgenden Aussagen zu?'},
 					{v:FView, f:['SITCON1', 'SITCON2', 'SITCON3']},
 					{v:MtView, f:['CONT1']},
@@ -300,8 +300,7 @@ define(function( require ) {
 					{v:FView, f:['WEDE3', 'WEAB2', 'WEAB3']},
 					{v:FView, f:['WEVI1', 'WEVI2', 'WD1']},
 					{v:FView, f:['WD2', 'WD3', 'WD4']},
-					{v:FView, f:['WD5', 'WORR1', 'WORR2']},
-					{v:FView, f:['JOBSAT']}
+					{v:FView, f:['WD5', 'WORR1', 'WORR2']}
 
 				],
 				evening:[
@@ -357,7 +356,7 @@ define(function( require ) {
 				__proto__: null,
 				enumerable: true,
 				writeable: false,
-				get: function(){ return /* this.STI.concat(this.evening) */ this.evening; },
+				get: function(){ return this.STI.concat(this.evening); },
 			});
 		}, // Ende initialize
 
