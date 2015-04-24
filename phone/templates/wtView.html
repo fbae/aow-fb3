@@ -7,9 +7,9 @@
 	<ul id='antwort' data-role='listview' data-inset='true'>
 		<% _.each(bes, function(bd) { %>
 			<li <% print((ant == bd[1]) ? 'class="ui-btn-active"': '') %> data-icon='false' >
-				<a href='#<% if (next == null || (id == 'SOU' && (bd[0] != 'Arbeitsmittel'))) { print('W'); } else { print('f?' + next); } %>'
+				<a href='#<% if (next == null || (id == 'SOU' && (bd[0] == 'Arbeitsmittel'))) { print('W'); } else { print('f?' + next); } %>'
 					data-value='<% print(bd[1]); %>' 
-					class='mtAntwort<% if (next == null || (id == 'SOU' && (bd[0] != 'Arbeitsmittel'))) { print(' wtSpeichern'); } %>'
+					class='mtAntwort<% if (next == null || (id == 'SOU' && (bd[0] == 'Arbeitsmittel'))) { print(' wtSpeichern'); } %>'
 					id='<%=id%><% print(bd[1]);%>'
 					><% print(bd[0]); %></a>
 			</li>

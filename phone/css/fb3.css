@@ -36,11 +36,11 @@
 	display:inline-block;
 	width:19%;
 }
-// Smileys
+/* Smileys */
 div.smiley5fc {}
 div.smiley5btn {
 	background-repeat:no-repeat;
-	background-position:center;
+	background-position:left;
 	min-height:29px;
 }
 div.smiley5btn label {
@@ -49,7 +49,7 @@ div.smiley5btn label {
 div.smiley7fc {}
 div.smiley7btn {
 	background-repeat:no-repeat;
-	background-position:center;
+	background-position:left;
 	min-height:18px;
 }
 div.smiley7btn label {
@@ -58,4 +58,28 @@ div.smiley7btn label {
 
 div.flipswitch-selectedOnce {
 	background-color:#38c !important;
+}
+
+/* während der Arbeit*/
+/* "Unterbrechung" und "echte Pause" - Knopf höher */
+#ww1 {
+	padding: 30% inherit;
+}
+#ww2 {
+	padding: 15% inherit;
+}
+#wN {
+	padding: 10% inherit;
+}
+#w1q {
+	padding: 45% inherit;
+}
+#w1w {
+	padding: 10% inherit;
+}
+#w2e {
+	padding: 45% inherit;
+}
+#w2w {
+	padding: 10% inherit;
 }

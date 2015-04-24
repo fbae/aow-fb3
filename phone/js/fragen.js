@@ -285,7 +285,7 @@ define(function( require ) {
 					{v:WtView, f:['MED']},
 				],
 				afterWork:[
-					{v:FView, f:['JOBSAT','TLX7']}
+					{v:FView, f:['JOBSAT','TLX7']},
 					{v:FView, f:['TLX1', 'TLX2', 'TLX3'], heading:'Wie hoch waren heute die &hellip;'},
 					{v:FView, f:['TLX4','TLX5', 'TLX6']},
 					{v:FView, f:['TPRESS1', 'TPRESS2', 'TPRESS3'], heading: 'Inwiefern stimmen Sie den folgenden Aussagen zu?'},
