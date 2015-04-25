@@ -14,7 +14,7 @@ if (legend) print('		</legend>');
 %>
 		</legend>
 
-		<div class="smiley5btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/s5.png) no-repeat left;'
+		<div class="smiley5btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/s5.png) no-repeat <% print((ant==1)?'right':'left'); %>;'
 			onClick='$(this).parent().find(".smiley5btn").css("background-position","left");$(this).css("background-position","right");'
 		>
 			<input data-enhanced="true" value="1" type="radio" id='_<%= kodierung%>1' name='_<%= kodierung%>1'  
@@ -23,7 +23,7 @@ if (legend) print('		</legend>');
 			>
 			<label for='_<%= kodierung%>1'></label>
 		</div>
-		<div class="smiley5btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/s4.png) no-repeat left;'
+		<div class="smiley5btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/s4.png) no-repeat <% print((ant==2)?'right':'left'); %>;'
 			onClick='$(this).parent().find(".smiley5btn").css("background-position","left");$(this).css("background-position","right");'
 		>
 			<input data-enhanced="true" value="2" type="radio" id='_<%= kodierung%>2' name='_<%= kodierung%>2'  
@@ -32,7 +32,7 @@ if (legend) print('		</legend>');
 			>
 			<label for='_<%= kodierung%>2'></label>
 		</div>
-		<div class="smiley5btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/s3.png) no-repeat left;'
+		<div class="smiley5btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/s3.png) no-repeat <% print((ant==3)?'right':'left'); %>;'
 			onClick='$(this).parent().find(".smiley5btn").css("background-position","left");$(this).css("background-position","right");'
 		>
 			<input data-enhanced="true" value="3" type="radio" id='_<%= kodierung%>3' name='_<%= kodierung%>3'  
@@ -41,7 +41,7 @@ if (legend) print('		</legend>');
 			>
 			<label for='_<%= kodierung%>3'></label>
 		</div>
-		<div class="smiley5btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/s2.png) no-repeat left;'
+		<div class="smiley5btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/s2.png) no-repeat <% print((ant==4)?'right':'left'); %>;'
 			onClick='$(this).parent().find(".smiley5btn").css("background-position","left");$(this).css("background-position","right");'
 		>
 			<input data-enhanced="true" value="4" type="radio" id='_<%= kodierung%>4' name='_<%= kodierung%>4'  
@@ -50,7 +50,7 @@ if (legend) print('		</legend>');
 			>
 			<label for='_<%= kodierung%>4'></label>
 		</div>
-		<div class="smiley5btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/s1.png) no-repeat left;'
+		<div class="smiley5btn ui-input-btn ui-btn ui-btn-inline" style='background:url(./css/images/emoticon/s1.png) no-repeat <% print((ant==5)?'right':'left'); %>;'
 			onClick='$(this).parent().find(".smiley5btn").css("background-position","left");$(this).css("background-position","right");'
 		>
 			<input data-enhanced="true" value="5" type="radio" id='_<%= kodierung%>5' name='_<%= kodierung%>5'  
