@@ -18,8 +18,8 @@ define( function( require) {
 
 		routes: {
 			// When there is no hash bang on the url, the home method is called
-			'': 'home',
-			'nichts': function(){},
+			'home': 'home',
+//			'nichts': function(){},
 			'S': 'speichern',
 			'settings': 'settings',
 

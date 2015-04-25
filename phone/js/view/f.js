@@ -15,22 +15,28 @@ define( function( require ) {
 				.off('pageshow')
 				.on('pageshow',
 						function(evt){
-							// die a.href="#" Weiterleitung in flipswitches ausschalten
-							thisEl.find( 'a[href="#"]' ).attr('href','#nichts');
-							// TODO: Formatierung der Sliderbeschriftung anpassen
+							// Formatierung der Sliderbeschriftung anpassen
 							var slider = thisEl.find( 'div.ui-slider div' );
-							if (slider && slider.width() > 0) {
-								var sliderHandle = thisEl.find( '.ui-slider-handle');
-								var sliderLinks = sliderHandle.offset().left - sliderHandle.width()/2;
-								var sliderBreite = thisEl.width() - sliderLinks - 2;
+							if (slider && (slider.width() > 0)) {
+								// bei erstmaligem Auftreten Position links und Breite neu berechnen und abspeichern
+								if (!(fb3.has('erklLBML') && fb3.has('erklW'))) {
+									var sliderHandle = thisEl.find( '.ui-slider-handle');
+									var sliderLinks = sliderHandle.offset().left - sliderHandle.width()/2;
+									var sliderBreite = thisEl.width() - sliderLinks - 2;
+									fb3.set({'erklW':sliderBreite, 'erklLBML':sliderLinks});
+								} else {
+									var sliderLinks = fb3.get('erklLBML');
+									var sliderBreite = fb3.get('erklW');
+								}
 								var erkl	 = thisEl.find( 'div.erkl' );
-								if (erkl) {
+								if (erkl && !erkl.attr('style')) {
+									// Erklärung ändern, wenn noch kein style-Attribut vorhanden ist, ansonsten gehe ich davon aus, dass schon angepasst wurde
 									erkl.width(sliderBreite);
 									var erklSpan = erkl.find('span');
 									erklSpan.css('width', Math.max(20,(erkl.width()/erklSpan.length - 4)));
+									erkl.find( '.linkeBeschriftung' ).css('margin-left',sliderLinks);
 									//TODO: könnte auch zu viel Text sein, dann sollte der 3. Eintrag oder gar der 2. und 4. Eintrag entfernt werden
 								}
-								thisEl.find( '.linkeBeschriftung' ).css('margin-left',sliderLinks);
 							}
 						});
 		},
@@ -75,7 +81,7 @@ define( function( require ) {
 				var kodierung = f.zeitpunkt() + frage.id;
 				switch (frage.art) {
 					case 2: // für flipswitch
-						this.$el.find('#_' + kodierung) // im umgebenden div.ui-field-contain
+						this.$el.find('#_' + kodierung) // im umgebenden div.ui-field-contain -> "schon mal ausgewählt" setzen
 							.on( 'change', function( evt, ui ) {
 								$(evt.target.parentNode)
 									.addClass('flipswitch-selectedOnce');
