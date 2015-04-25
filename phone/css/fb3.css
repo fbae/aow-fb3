@@ -61,6 +61,9 @@ div.flipswitch-selectedOnce {
 }
 
 /* während der Arbeit*/
+div.ui-content {
+	min-height:441px !important;
+}
 /* "Unterbrechung" und "echte Pause" - Knopf höher */
 #ww1 {
 	padding: 30% inherit;
