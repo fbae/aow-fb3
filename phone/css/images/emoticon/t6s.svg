@@ -11,16 +11,16 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg1"
-   sodipodi:docname="nicubunu-Emoticons-Sad-face-selected.svg"
+   sodipodi:docname="t6.svg"
    viewBox="0 0 101.22 101.18"
    sodipodi:version="0.32"
    version="1.1"
    inkscape:version="0.48.5 r10040"
    width="100%"
    height="100%"
-   inkscape:export-filename="/home/frank/fb3/phone/css/images/emoticon/t2s.png"
-   inkscape:export-xdpi="34.68"
-   inkscape:export-ydpi="34.68">
+   inkscape:export-filename="/home/frank/fb3/phone/css/images/emoticon/t6s.png"
+   inkscape:export-xdpi="35.566532"
+   inkscape:export-ydpi="35.566532">
   <defs
      id="defs3">
     <radialGradient
@@ -79,7 +79,7 @@
      showgrid="false"
      borderopacity="1.0"
      inkscape:current-layer="svg1"
-     inkscape:cx="50.611501"
+     inkscape:cx="48.661446"
      inkscape:cy="50.59"
      inkscape:window-width="1600"
      inkscape:pageopacity="0.0" />
@@ -142,25 +142,25 @@
   </g>
   <g
      id="g863"
-     transform="matrix(.99573 -.092314 -.092314 -.99573 -17.709 173.16)">
+     transform="translate(-26.895 -15.548)">
     <path
        id="path862"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccc"
-       style="fill-rule:evenodd;fill:#ff0000"
-       d="m57.694 94.193c0.625 3.125 37.931 3.932 41.681-3.568 2.505 7.187-31.056 18.885-41.681 3.568z" />
-    <path
-       id="path861"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc"
-       style="stroke-linejoin:round;stroke:#000000;stroke-width:2.5;fill:none"
-       d="m53.191 92.358c12.72 13.642 42.256 8.782 49.639-2.504" />
+       style="fill:#ff0000;fill-rule:evenodd"
+       d="m 52.950639,89.545822 c 8.090925,9.428361 40.445727,10.494058 46.870088,0.856314 C 99.7628,100.47815 67.364317,106.7105 52.950639,89.545822 z" />
     <path
        id="path851"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc"
-       style="stroke-linejoin:round;stroke:#000000;stroke-width:2.5;fill:none"
-       d="m49.859 89.762c9.924 11.918 49.434 7.859 57.961-4.837" />
+       style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 53.393383,89.472634 c 13.745723,11.149256 37.12908,10.818686 48.090737,-0.860638" />
+    <path
+       id="path861"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#000000;stroke-width:1.20000005;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 54.442841,90.559115 C 66.004841,105.24711 94.375,103.12 101.25,89.688" />
   </g>
   <metadata
      id="metadata26">
@@ -177,7 +177,7 @@
             <dc:title>Openclipart</dc:title>
           </cc:Agent>
         </dc:publisher>
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
       <cc:License
          rdf:about="http://creativecommons.org/licenses/publicdomain/">

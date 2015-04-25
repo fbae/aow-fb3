@@ -95,9 +95,7 @@ define( function( require ) {
 				}
 			}
 			this.$el.find( ':jqmData(role=controlgroup)' ).controlgroup();
-			this.$el.page()
-				// weiße Fläche verbergen - 441px - kann auch noch größer sein
-//				.find( '.ui-content' ).css('min-height', 441 );
+			this.$el.page();
 
 			// Maintains chainability
 			return this;
