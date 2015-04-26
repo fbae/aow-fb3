@@ -40,7 +40,6 @@ js/view/fehlerView.js
 js/view/f.js
 js/view/mt.js
 js/view/settings.js
-js/view/seView.js
 js/view/w.js
 js/view/wt.js
 
@@ -52,7 +51,6 @@ templates/jn.html
 templates/msgView.html
 templates/mtView.html
 templates/settingsView.html
-templates/seView.html
 templates/slider0-7_15.html
 templates/slider1-100.html
 templates/slider1-20.html
