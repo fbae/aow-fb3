@@ -1,131 +1,31 @@
 <div data-theme='a' data-role='content' class='ui-content ui-body-a'>
-	<!-- 
-		Status: <%= status %> 
+	<!--
+		Status: <%= status %>
 		Version: <%= version %>
 		Gerätename: <%= device %>
 		Startdatum: <% print(tag.toGerman()); %>
 	-->
-	<div >Schichtbeginn: <span id='sb'><% print(schichtbeginn.toGerman()); %></span>
-		<input type='button' data-role='button' data-inline='true' data-mini='true' id='cSbButton' value='ändern' />
-	</div>
-	<div id='changeSchichtbeginn' style='display:none'>
-		<div>Bitte geben Sie an, zu welchem Zeitpunkt Ihr nächster Arbeitseinsatz voraussichtlich beginnen wird.</div>
-		<div class="ui-field-contain">
-			<fieldset data-role="controlgroup" data-type="horizontal" data-theme="c">
-				<legend>Datum:</legend>
-				<select name="select-choice-day" id="select-choice-day">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-					<option value="13">13</option>
-					<option value="14">14</option>
-					<option value="15">15</option>
-					<option value="16">16</option>
-					<option value="17">17</option>
-					<option value="18">18</option>
-					<option value="19">19</option>
-					<option value="20">20</option>
-					<option value="21">21</option>
-					<option value="22">22</option>
-					<option value="23">23</option>
-					<option value="24">24</option>
-					<option value="25">25</option>
-					<option value="26">26</option>
-					<option value="27">27</option>
-					<option value="28">28</option>
-					<option value="29">29</option>
-					<option value="30">30</option>
-					<option value="31">31</option>
-				</select>
-				<select name="select-choice-month" id="select-choice-month">
-					<option value="0">Jan</option>
-					<option value="1">Feb</option>
-					<option value="2">März</option>
-					<option value="3">Apr</option>
-					<option value="4">Mai</option>
-					<option value="5">Juni</option>
-					<option value="6">Juli</option>
-					<option value="7">Aug</option>
-					<option value="8">Sept</option>
-					<option value="9">Okt</option>
-					<option value="10">Nov</option>
-					<option value="11">Dez</option>
-				</select>
-				<select name="select-choice-year" id="select-choice-year">
-					<option value="2013">2013</option>
-					<option value="2014">2014</option>
-				</select>
-			</fieldset>
-		</div>
-		<div class="ui-field-contain">
-			<fieldset data-role="controlgroup" data-type="horizontal" data-theme="c">
-				<legend>Uhrzeit:</legend>
-				<select name="select-choice-hour" id="select-choice-hour" data-theme="c">
-					<option value="0">0</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-					<option value="13">13</option>
-					<option value="14">14</option>
-					<option value="15">15</option>
-					<option value="16">16</option>
-					<option value="17">17</option>
-					<option value="18">18</option>
-					<option value="19">19</option>
-					<option value="20">20</option>
-					<option value="21">21</option>
-					<option value="22">22</option>
-					<option value="23">23</option>
-				</select>
-				<select name="select-choice-quarter" id="select-choice-quarter">
-					<option value="0">00</option>
-					<option value="15">15</option>
-					<option value="30">30</option>
-					<option value="45">45</option>
-				</select>
-			</fieldset>
-		</div>
-	</div> <!-- changeSchichtbeginn -->
-	<div >Versuchsperson: <span id='vpn'><%= person %></span>
-		<input type='button' data-role='button' data-inline='true' data-mini='true' id='vpnButton' value='ändern' />
-	</div>
-	<div id='vpnCode' style='display:none'>
-		Um eine eindeutige, anonyme Kennung zu erstellen, geben Sie bitte Folgende Angaben Ihrer Mutter an:
-		<label for="vvm"><strong>erster</strong> und <strong>letzter</strong> Buchstaben des Vornamen der Mutter:</label>
-		<input type="text" name="vvm" id="vvm" value="" pattern="[A-Za-z]{2}" />
-		<label for="vnm"><strong>zweiter</strong> und <strong>letzter</strong> Buchstaben des Geburtsnamen der Mutter:</label>
-		<input type="text" name="vnv" id="vnm" value="" pattern="[A-Za-z]{2}" />
-		<label for="gm">letzte Ziffer des Geburtsjahres der Mutter:</label>
-		<input type="number" name="gm" id="gm" value="0" min="0" max="9" />
-		<input type='button' data-role='button' data-inline='true' data-mini='true' id='vpnButtonBottom' value='Formular wieder ausblenden' />
-		<br/>
-	</div>
-	<input type='button' value='übertrage alle Daten' id='save0DataButton'
-		<% if(!navigator.onLine) { print("class='ui-disabled'"); } %>
-	/>
+
+	<fieldset>
+		<label for="dev">Gerätename:</label>
+		<input type="text" name="dev" id="dev" value="<%= device %>" />
+	</fieldset>
+
+	<fieldset>
+		<label for="vpn">Kodierung der Versuchsperson:</label>
+		<input type="text" name="vpn" id="vpn" value="<%= person %>" pattern="[0-9]{5}" />
+	</fieldset>
+
+	<fieldset>
+		<input type='button' value='übertrage alle Daten' id='save0DataButton' name='sav'
+			<% if(!navigator.onLine) { print("class='ui-disabled'"); } %>
+		/>
+	</fieldset>
 </div> <!-- /content -->
-<div data-role="popup" id="settingsSaveAllDataErfolg" data-theme='e' data-overlay-theme='c'>
+<div data-role="popup" id="settingsSaveAllDataErfolg" data-theme='b' data-overlay-theme='a'>
 	<p>Die Daten wurden erfolgreich übertragen.<p>
 </div>
-<div data-role="popup" id="settingsSaveAllDataFehler" data-theme='e' data-overlay-theme='c'>
+<div data-role="popup" id="settingsSaveAllDataFehler" data-theme='b' data-overlay-theme='a'>
 	<p>Beim Übertragen der Daten ist ein Fehler aufgetreten.<p>
 </div>
 <div data-theme='a' data-role='footer' data-position='fixed'>

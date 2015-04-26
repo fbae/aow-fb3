@@ -62,28 +62,28 @@ define(function( require ) {
 			this.add(new Frage({id:'NA6', art:5, txt:'Ängstlich'}));
 			this.add(new Frage({id:'PA6', art:5, txt:'Wach'}));
 			this.add(new Frage({id:'TI3', art:5, txt:'Entkräftet'}));
-			
-			this.add(new Frage({id:'PSQI4', art:1, 
+
+			this.add(new Frage({id:'PSQI4', art:1,
 				txt: 'Wie viele Stunden haben Sie tatsächlich geschlafen?<br/>(Dies kann von der Zeit, die Sie im Bett verbracht haben, abweichen.)',
-				bes: [ 
+				bes: [
 						['> 7 Stunden',4],
 						['6-7 Stunden',3],
 						['5-6 Stunden',2],
 						['< 5 Stunden',1]
 				]
 			}));
-			this.add(new Frage({ id: 'PSQI7', art:1, 
+			this.add(new Frage({ id: 'PSQI7', art:1,
 				txt: 'Wie würden Sie Ihren Schlaf in der letzten Nacht bewerten?',
-				bes: [ 
+				bes: [
 						['sehr schlecht',1],
 						['eher schlecht',2],
 						['eher gut',3],
 						['gut',4]
 				]
 			}));
-			this.add(new Frage({ id: 'PSQI2', art:1, 
+			this.add(new Frage({ id: 'PSQI2', art:1,
 				txt: 'Wie viele Minuten hat es in etwa gedauert, bis Sie eingeschlafen sind?',
-				bes: [ 
+				bes: [
 						['<= 15 Minuten',4],
 						['16-30 Minuten',3],
 						['31-60 Minuten',2],
@@ -91,7 +91,7 @@ define(function( require ) {
 				]
 			}));
 			this.add(new Frage({ id: 'PSQI11', art:1, txt: 'Sind Sie in der Nacht aufgewacht?',
-				bes: [ 
+				bes: [
 						['nein',5],
 						['ja, ein Mal',4],
 						['ja, zwei Mal',3],
@@ -100,7 +100,7 @@ define(function( require ) {
 				]
 			}));
 			this.add(new Frage({ id: 'ISI', art:1, txt: 'Bitte bewerten Sie den Schweregrad Ihrer Schlafprobleme während dieser Nacht (Einschlafschwierigkeiten, Durschschlafschwierigkeiten, Probleme wegen zu frühen Aufwachens).',
-				bes: [ 
+				bes: [
 						['keine',1],
 						['leicht',2],
 						['mittelmäßig',3],
@@ -117,7 +117,7 @@ define(function( require ) {
 			this.add(new Frage({id:'COMPI', art:5, txt:'Die Unterbrechungsaufgabe war sehr anspruchsvoll.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'COMPP', art:5, txt:'In was für einer Aufgabe wurden Sie unterbrochen?<br/>Bitte wählen Sie aus:', lTxt:'Leichte Aufgabe', rTxt:'Schwierige Aufgabe'}));
 			this.add(new Frage({id:'SOU', art:3, txt:'Wer oder was hat Sie unterbrochen?.',
-				bes: [ 
+				bes: [
 						['Kunde',1],
 						['Kollege',2],
 						['ChefIn',3],
@@ -127,7 +127,7 @@ define(function( require ) {
 				]
 			}));
 			this.add(new Frage({id:'MED', art:3, txt:'Wodurch wurden Sie unterbrochen?.',
-				bes: [ 
+				bes: [
 						['Telefon',1],
 						['Mail',2],
 						['persönlicher Kontakt',3],
@@ -157,7 +157,7 @@ define(function( require ) {
 			this.add(new Frage({id:'SITCON3', art:5, txt:'Ich musste heute mit Material, Arbeitsmitteln oder Werkzeug arbeiten, die nicht viel taugten.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 
 			this.add(new Frage({ id: 'CONT1', art:1, txt: 'Wenn Sie Ihre Tätigkeit heute betrachten, inwieweit konnten Sie die Reihenfolge der Arbeitsschritte selbst festlegen?',
-				bes: [ 
+				bes: [
 						['sehr wenig',1],
 						['ziemlich wenig',2],
 						['etwas',3],
@@ -166,7 +166,7 @@ define(function( require ) {
 				]
 			}));
 			this.add(new Frage({ id: 'CONT2', art:1, txt: 'Wie viel Einfluss hatten Sie heute darauf, welche Aufgaben Sie heute bearbeitet haben?',
-				bes: [ 
+				bes: [
 						['sehr wenig',1],
 						['ziemlich wenig',2],
 						['etwas',3],
@@ -175,7 +175,7 @@ define(function( require ) {
 				]
 			}));
 			this.add(new Frage({ id: 'CONT3', art:1, txt: 'Wenn man Ihre Arbeit heute betrachtet, wie viel Möglichkeiten zu eigenen Entscheidungen bot Ihnen Ihre Arbeit?',
-				bes: [ 
+				bes: [
 						['sehr wenig',1],
 						['ziemlich wenig',2],
 						['etwas',3],
@@ -246,7 +246,7 @@ define(function( require ) {
 			this.add(new Frage({id:'DANGER_QUAL1', art:2, txt:'Haben Sie heute in einem Arbeitstempo gearbeitet, das Sie langfristig nicht durchhalten können?'}));
 			this.add(new Frage({id:'DANGER_QUAL2', art:2, txt:'Haben Sie heute in einem Arbeitstempo gearbeitet, von dem Sie wissen, dass es Ihnen nicht gut tut?'}));
 
-			//Haben Sie heute Genussmittel/Substanzen (z.B. Alkohol, Nikotin oder Medikamente) konsumiert, um nach der Arbeit 
+			//Haben Sie heute Genussmittel/Substanzen (z.B. Alkohol, Nikotin oder Medikamente) konsumiert, um nach der Arbeit
 			this.add(new Frage({id:'DRUG_RELAX1', art:2, txt:'&hellip; nach der Arbeit besser abschalten zu können?'}));
 			this.add(new Frage({id:'DRUG_RELAX2', art:2, txt:'&hellip; nach der Arbeit besser einschlafen zu können?'}));
 			this.add(new Frage({id:'DRUG_STIMU1', art:2, txt:'&hellip; Ihre hohe Arbeitsmenge besser bewältigen zu können?'}));
@@ -260,9 +260,9 @@ define(function( require ) {
 			this.add(new Frage({id:'STRAT_INT2', art:5, txt:'Heute strukturierte ich die Aufgaben des Tages um und bearbeite die wichtigsten Aufgaben zuerst.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'STRAT_INT3', art:5, txt:'Heute versuchte ich, weitere Unterbrechungen zu ignorieren.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'STRAT_INT4', art:5, txt:'Heute bat ich meine Kollegen um Hilfe.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
-	
+
 			this.add(new Frage({ id: 'HO', art:1, txt: 'Wo haben Sie heute gearbeitet?',
-				bes: [ 
+				bes: [
 						['Büro',1],
 						['zu Hause',2],
 						['Dienstreise',3],

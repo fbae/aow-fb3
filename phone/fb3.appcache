@@ -1,6 +1,6 @@
 CACHE MANIFEST
 
-# v0.1.2	25.4.2015
+# v0.3.0	26.4.2015
 
 fb3.appcache
 index.html
@@ -39,7 +39,6 @@ js/vendor/underscore-min.js
 js/view/fehlerView.js
 js/view/f.js
 js/view/mt.js
-js/view/sb.js
 js/view/settings.js
 js/view/seView.js
 js/view/w.js
@@ -52,7 +51,6 @@ templates/fView.html
 templates/jn.html
 templates/msgView.html
 templates/mtView.html
-templates/sbView.html
 templates/settingsView.html
 templates/seView.html
 templates/slider0-7_15.html

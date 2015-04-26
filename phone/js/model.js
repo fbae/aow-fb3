@@ -146,7 +146,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 
 			// initialisiere die Programm-Variablen ==================================
 			this.set('status','debug');
-			this.set('version','0.2');
+			this.set('version','0.3');
 			if ((this.get('status') == 'debug') && this.db)
 				//TODO tritt nicht ein, weil so früh this.db noch nicht zur Verfügung steht
 				this.db.transaction('log','readwrite').objectStore('log').clear();
@@ -223,7 +223,7 @@ console.debug('setzeAntwort', antwortO);
 
 		// für besondere Abläufe können hier die Typen auf TabellenNamen gemappt werden
 		// hier zum Beispiel Ablauf Q wird in Tabelle antwortenW gespeichert
-		antwortenTabelle: function() { 
+		antwortenTabelle: function() {
 			if (this.fragen.typ) {
 				var t;
 				switch (this.fragen.typ) {
@@ -427,32 +427,11 @@ console.debug('saveTab aufgerufen mit tabName: '+tabName);
 
 				}
 			}
-
-			// Wenn alle Daten weg sind den SpeichernAlle-Button ausblenden
-			// TODO: da das Speichern nebenläufig ist, steht hier noch nicht fest, ob alles bearbeitet wurde
-			//			es müsste also ein callback eingerichtet werden, der feststellen kann, ob alle Speichervorgänge abgeschlossen sind
-			//			und dann den Button ausblendet.
-			var antA = ['antwortenM','antwortenW','antwortenE','antwortenA','log'];
-			var t = self.db.transaction(antA);
-			var anz = 0;
-			t.objectStore('antwortenM').count().onsuccess = function(e) {
-				anz = anz + e.target.result;
-				t.objectStore('antwortenW').count().onsuccess = function(e) {
-					anz = anz + e.target.result;
-					t.objectStore('antwortenE').count().onsuccess = function(e) {
-						anz = anz + e.target.result;
-						t.objectStore('antwortenA').count().onsuccess = function(e) {
-							anz = anz + e.target.result;
-							self.showSaveAllButton(Boolean(anz > 0));
-							console.info('es wurden '+anz+' Datensätze in M, W, E und A gezählt');
-						}
-					}
-				}
-			};
+			this.countDS();
 		},
 
 		antwortenWZusammenfassen: function(errA) {
-			/* überarbeite antwortenW, indem passende Einträge zusammengefasst werden, 
+			/* überarbeite antwortenW, indem passende Einträge zusammengefasst werden,
 			 * dort neu im Datenbankformat gespeichert werden und die passenden Einträge anschließend
 			 * gelöscht werden
 			 * cb - wird ohne Parameter aufgerufen, nachdem zusammengefasst wurde (callback)
@@ -473,7 +452,7 @@ console.debug('antwortenWZusammenfassen aufgerufen');
 					wArr.push(cursor.value);
 					cursor.continue();
 				} else {
-					// alle Daten sind übertragen 
+					// alle Daten sind übertragen
 
 					// funktion deklarieren
 					var fasseZusammen = function(startStr, endStr, artStr) {
@@ -520,11 +499,9 @@ console.debug('antwortenWZusammenfassen aufgerufen');
 							w2Arr.push(weObj);
 							weObj = new Object();
 						}
-	console.debug('awz w2',w2Arr);
 						// Zusammenfassung speichern und bei Erfolg id's löschen
 						_.each(w2Arr, function(val, key, list){
 							var req = oStore.put(val);
-	console.debug('awt puted',val);
 							req.onerror = function(e) {
 								console.warn('Fehler - Zusammenfassung von '+tabName+' - es konnte '+artStr+'nicht abgespeichert werden. ',e);
 							}
@@ -711,7 +688,7 @@ console.debug('antwortenWZusammenfassen aufgerufen');
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
 			.put({'workstart':new Date(), 'device':fb3.get('device'), 'person':fb3.get('person')})
 			.onerror = function(e) { console.warn('Fehler: #W click (workstart) hat keinen IDB Eintrag hinterlassen ',e);};
-	}); 
+	});
 	// intStart in die Datenbank Tabelle W eintragen
 	$('#ww1').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
@@ -722,7 +699,7 @@ console.debug('antwortenWZusammenfassen aufgerufen');
 					fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW').delete(evt.data);
 				});
 			};
-	}); 
+	});
 	// intEnd in die Datenbank Tabelle W eintragen
 	$('#w1q').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
@@ -730,18 +707,18 @@ console.debug('antwortenWZusammenfassen aufgerufen');
 			.onsuccess = function(){
 				$('#w1w').off('click');
 			}
-	}); 
+	});
 	// brStart in die Datenbank Tabelle W eintragen
 	$('#ww2').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
 			.put({'break':new Date(), 'device':fb3.get('device'), 'person':fb3.get('person')})
 			.onsuccess = function(e) {
-				// wie oben - zurück-Button löscht den letzten Eintrag 
+				// wie oben - zurück-Button löscht den letzten Eintrag
 				$('#w2w').on('click',null,e.target.result,function(evt) {
 					fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW').delete(evt.data);
 				});
 			};
-	}); 
+	});
 	// brEnd eintragen
 	$('#w2e').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
@@ -749,12 +726,12 @@ console.debug('antwortenWZusammenfassen aufgerufen');
 			.onsuccess = function(){
 				$('#w2w').off('click');
 			}
-	}); 
+	});
 	// WorkEnd in die Datenbank Tabelle W eintragen
 	$('#wN').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
 			.put({'workend':new Date(), 'device':fb3.get('device'), 'person':fb3.get('person')})
-	}); 
+	});
 
 	return Fb3Model;
 } );
