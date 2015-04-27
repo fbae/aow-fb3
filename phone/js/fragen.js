@@ -215,7 +215,7 @@ define(function( require ) {
 
 			//Abends
 
-			this.add(new Frage({id:'OVERTI', art:715, txt:'Wie lange haben Sie heute nach der Beantwortung des letzten Fragebogens noch gearbeitet?'}))
+			this.add(new Frage({id:'OVERTI', art:715, txt:'Wie lange haben Sie heute nach der Beantwortung des letzten Fragebogens noch gearbeitet?', rTxt:'Stunden'}))
 			this.add(new Frage({id:'FORGET', art:5, txt:'Ich habe heute vergessen, bereits angefangende oder geplante Aufgaben zu erledigen.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'ERR', art:5, txt:'Heute habe ich Fehler während meiner Arbeitszeit gemacht.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 
@@ -235,7 +235,7 @@ define(function( require ) {
 			this.add(new Frage({id:'REC_E1', art:5, txt:'Nach der Arbeit habe ich abgeschalten und mich entspannt.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'REC_E2', art:5, txt:'Nach der Arbeit habe ich entspannende Dinge getan.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'REC_E3', art:5, txt:'Nach der Arbeit nutzte ich die Zeit zur Entspannung.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
-			this.add(new Frage({id:'REC_E4', art:5, txt:'Nach der Arbeit gönnte ich mir Freizeit/nutze ich die Zeit für Erholung.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
+			this.add(new Frage({id:'REC_E4', art:5, txt:'Nach der Arbeit gönnte ich mir Freizeit/nutzte ich die Zeit für Erholung.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'REC_M1', art:5, txt:'Nach der Arbeit lernte ich neue Dinge.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'REC_M2', art:5, txt:'Nach der Arbeit suchte ich nach intellektuellen Herausforderungen.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'REC_M3', art:5, txt:'Nach der Arbeit tat ich Dinge, die mich herausfordern.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
