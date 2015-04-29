@@ -305,10 +305,12 @@ console.debug('saveTab aufgerufen mit tabName: '+tabName);
 							var min = Math.floor((v - G) * 60);
 							l[k] = std + ':' + min + ':00';
 */
-						} if (/OVERTI/.test(k) && _.isNumber(v)) {
+						} else if (/OVERTI/.test(k) && _.isNumber(v)) {
 							// OVERTI kodiert die Zeit in Viertelstunden -> 2.75 ist dann also 11
 							l[k] = v * 4;
-						}	else {
+						}	else if (_.isString(v) && (/true/.test(v) || /false/.test(v))) {
+							l[k] = /true/.test(v);
+						} else {
 							if (_.isObject(v) && _.isDate(v.zeit)) {
 								l[k + 'D'] = v.zeit.toMysqlFormat();
 								l[k] = v.wert;

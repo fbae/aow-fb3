@@ -116,7 +116,7 @@ define(function( require ) {
 
 			this.add(new Frage({id:'COMPI', art:5, txt:'Die Unterbrechungsaufgabe war sehr anspruchsvoll.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'COMPP', art:5, txt:'In was für einer Aufgabe wurden Sie unterbrochen?<br/>Bitte wählen Sie aus:', lTxt:'Leichte Aufgabe', rTxt:'Schwierige Aufgabe'}));
-			this.add(new Frage({id:'SOU', art:3, txt:'Wer oder was hat Sie unterbrochen?.',
+			this.add(new Frage({id:'SOU', art:3, txt:'Wer oder was hat Sie unterbrochen?',
 				bes: [
 						['Kunde',1],
 						['Kollege',2],
@@ -126,7 +126,7 @@ define(function( require ) {
 						['andere',6]
 				]
 			}));
-			this.add(new Frage({id:'MED', art:3, txt:'Wodurch wurden Sie unterbrochen?.',
+			this.add(new Frage({id:'MED', art:3, txt:'Wodurch wurden Sie unterbrochen?',
 				bes: [
 						['Telefon',1],
 						['Mail',2],

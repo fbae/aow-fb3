@@ -8,11 +8,11 @@
 	<div data-role='navbar' data-iconpos='left'>
 		<ul>
 			<% if (prev == null) %>
-			<li><a href='#home' data-icon='home' >home</a></li>
+			<li><a href='#home' data-icon='home' accesskey='h'>home</a></li>
 			<% else { %>
-			<li><a href='#f?<%= prev %>' data-icon='arrow-l' >zurück</a></li>
+			<li><a href='#f?<%= prev %>' data-icon='arrow-l' accesskey='z'>zurück</a></li>
 			<% } %>
-			<li><a href='#<% print((next == null) ? 'S' : 'f?' + next) %>' data-icon='arrow-r' >weiter</a></li>
+			<li><a href='#<% print((next == null) ? 'S' : 'f?' + next) %>' data-icon='arrow-r' accesskey='w' >weiter</a></li>
 		</ul>
 	</div>
 </div>
