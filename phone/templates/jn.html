@@ -1,9 +1,25 @@
 <fieldset>
-	<div id="_<%= kodierung %>" class="ui-field-contain">
+	<div id="_<%= kodierung %>" class="ui-field-contain JaNein">
+		<div class="ui-input-btn ui-btn ui-btn-inline<% print((ant == 'true')?' ui-icon-check ui-btn-icon-right':'');%>">Ja
+			<input data-enhanced="true" value="true" type="button" data-mini="true" 
+				onClick='fb3.setzeAntwort({"kodierung": "<%= kodierung %>", "zeit": new Date(), "antw": "true"});
+				$(this).parent().parent().children().removeClass("ui-icon-check ui-btn-icon-right");
+				$(this).parent("div").addClass("ui-icon-check ui-btn-icon-right");'
+			>
+		</div>
+		<div class="ui-input-btn ui-btn ui-btn-inline<% print((ant == 'false')?' ui-icon-check ui-btn-icon-right':'');%>">Nein
+			<input data-enhanced="true" value="false" type="button" data-mini="true" 
+				onClick='fb3.setzeAntwort({"kodierung": "<%= kodierung %>", "zeit": new Date(), "antw": "false"});
+				$(this).parent().parent().children().removeClass("ui-icon-check ui-btn-icon-right");
+				$(this).parent("div").addClass("ui-icon-check ui-btn-icon-right");'
+			>
+		</div>
+		<!--
 		<label for="<%= kodierung %>"><%= txt %></label>
 		<select id="<%= kodierung %>" data-role="flipswitch">
 			<option value="true" <% if (ant == 'true') print('selected=""'); %>>Ja</option>
 			<option value="false" <% if (ant == 'false') print('selected=""'); %>>Nein</option>
 		</select>
+		-->
 	</div>
 </fieldset>

@@ -36,6 +36,7 @@
 	display:inline-block;
 	width:19%;
 }
+
 /* Smileys */
 div.smiley5fc {}
 div.smiley5btn {
@@ -56,6 +57,12 @@ div.smiley7btn label {
 	min-width:8px;
 }
 
+/* Ja/Nein - Buttons */
+div.JaNein div {
+	min-width:30%
+}
+
+/**/
 div.flipswitch-selectedOnce {
 	background-color:#38c !important;
 }
