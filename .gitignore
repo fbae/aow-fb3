@@ -8,7 +8,6 @@
 *.log
 *.out
 *.pdf
-*.php
+phone/api/dbData.php
 *.directory
 ttt/*
-phone/api
