@@ -23,10 +23,8 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 					// Fehler steigen auf - wird aus allen requests für alle auftauchenden Fehler abgerufen
 					console.error('Fehler - indexedDB: ', e, 'Message:', e.target.error.message);
 				};
-//console.debug( 'open1');
 				// laden der Informationen aus der Datenbank und Abspeichern im Fb3Model
 				var req = self.db.transaction('einstellungen').objectStore('einstellungen').openCursor();
-//console.debug( 'open2');
 				req.onsuccess = function(event) {
 					var cursor = event.target.result;
 					if (cursor) {
@@ -71,7 +69,6 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 						}
 						// Art setzen, falls noch nicht erfolgt ist
 						if (!fb3.has('art')) fb3.set('art', Boolean(Math.abs(this.anzHeute % 2)));
-//console.debug( 'open3');
 
 						// gibt es nicht beendete Antworten, die eventuell passen könnten?
 						if ( self.has('antwortenTabelle') && self.has('antwortenId')) {
@@ -161,7 +158,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 			}
 
 			this.log({msg:'setzeAntwort', data:antwortO});
-console.debug('setzeAntwort', antwortO);
+//console.debug('setzeAntwort', antwortO);
 
 			if (this.has('antworten')) {
 				var data = this.get('antworten');
@@ -287,7 +284,6 @@ console.debug('setzeAntwort', antwortO);
 
 		saveTab: function(tabName, errors) {
 			var self = this;
-console.debug('saveTab aufgerufen mit tabName: '+tabName);
 			// Antworten auslesen
 			var req = self.db.transaction(tabName).objectStore(tabName).openCursor();
 			req.onsuccess = function(e) {
@@ -439,7 +435,6 @@ console.debug('saveTab aufgerufen mit tabName: '+tabName);
 			 * cb - wird ohne Parameter aufgerufen, nachdem zusammengefasst wurde (callback)
 			 */
 			var tabName = 'antwortenW';
-console.debug('antwortenWZusammenfassen aufgerufen');
 			var self = this;
 			// Tabelle W in Array übertragen
 			var wArr = new Array(); // hält Arbeitskopie der Tabelle W
@@ -597,7 +592,6 @@ console.debug('antwortenWZusammenfassen aufgerufen');
 				o.tag = this.get('tag');
 				o.person = this.get('person');
 				o.schichtbeginn = this.get('schichtbeginn');
-				console.debug( 'schichtbeginn', o.schichtbeginn ,(new Date()).getTime());
 				return o;
 			}
 		},

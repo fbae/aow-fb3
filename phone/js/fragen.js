@@ -99,7 +99,7 @@ define(function( require ) {
 						['ja, mehr als drei Mal',1]
 				]
 			}));
-			this.add(new Frage({ id: 'ISI', art:1, txt: 'Bitte bewerten Sie den Schweregrad Ihrer Schlafprobleme während dieser Nacht (Einschlafschwierigkeiten, Durschschlafschwierigkeiten, Probleme wegen zu frühen Aufwachens).',
+			this.add(new Frage({ id: 'ISI', art:1, txt: 'Bitte bewerten Sie den Schweregrad Ihrer Schlafprobleme während dieser Nacht (Einschlafschwierigkeiten, Durchschlafschwierigkeiten, Probleme wegen zu frühen Aufwachens).',
 				bes: [
 						['keine',1],
 						['leicht',2],
@@ -314,8 +314,8 @@ define(function( require ) {
 					{v:FView, f:['REC_M1', 'REC_M2', 'REC_M3', 'REC_M4']},
 					{v:FView, f:['DANGER_QUANT1', 'DANGER_QUANT2', 'DANGER_QUAL1']},
 					{v:FView, f:['DANGER_QUAL2', 'SMOK', 'ALC']},
-					{v:FView, f:['DRUG_RELAX1', 'DRUG_RELAX2'], heading:'Haben Sie heute Genussmittel / Substanzen (z.B. Alkohol, Nikotin oder Medikamente) konsumiert, um '},
-					{v:FView, f:['DRUG_STIMU1', 'DRUG_STIMU2'], heading:'Haben Sie heute Genussmittel / Substanzen (z.B. Alkohol, Nikotin oder Medikamente) konsumiert, um '},
+					{v:FView, f:['DRUG_RELAX1', 'DRUG_RELAX2'], heading:'Haben Sie heute Genussmittel / Substanzen (z.B. Alkohol, Koffein, Nikotin oder Medikamente) konsumiert, um '},
+					{v:FView, f:['DRUG_STIMU1', 'DRUG_STIMU2'], heading:'Haben Sie heute Genussmittel / Substanzen (z.B. Alkohol, Koffein, Nikotin oder Medikamente) konsumiert, um '},
 				],
 
 				STI:[

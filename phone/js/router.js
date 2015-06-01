@@ -27,6 +27,9 @@ define( function( require) {
 			'W':  function() {
 				$(':mobile-pagecontainer').pagecontainer('change', '#W', {reverse: false, changeHash: true});
 			},
+			'W0': function() {
+				$(':mobile-pagecontainer').pagecontainer('change', '#W0', {reverse: false, changeHash: true});
+			},
 			'W1': function() {
 				$(':mobile-pagecontainer').pagecontainer('change', '#W1', {reverse: false, changeHash: true});
 			},

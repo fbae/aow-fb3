@@ -57,21 +57,29 @@
 
 		<div id='W' data-title='während der Arbeit' data-role='page' data-theme='b'>
 			<div data-role='main' class='ui-content'>
-				<a href='#W1' class='ui-btn' id='ww1'>Unterbrechung</a>
-				<a href='#W2' class='ui-btn' id='ww2'>echte Pause</a>
-				<a href='#A'  class='ui-btn' id='wN'>Arbeitsende</a>
+				<div>
+					Bitte synchronisieren Sie die Zeit Ihres Herzratengerätes!
+				</div>
+				<a href='#W0' class='ui-btn' id='ww0'>OK</a>
 			</div>
 		</div>
-		<div id='W1' data-role='page' data-theme='b'>
+		<div id='W0' data-title='während der Arbeit' data-role='page' data-theme='b'>
+			<div data-role='main' class='ui-content'>
+				<a href='#W1' class='ui-btn' id='w0w1'>Unterbrechung</a>
+				<a href='#W2' class='ui-btn' id='w0w2'>echte Pause</a>
+				<a href='#A'  class='ui-btn' id='w0N'>Arbeitsende</a>
+			</div>
+		</div>
+		<div id='W1' data-title='Unterbrechung' data-role='page' data-theme='b'>
 			<div data-role='main' class='ui-content'>
 				<a href='#Q' class='ui-btn' id='w1q'>Ende</a>
-				<a href='#W' class='ui-btn' id='w1w'>zurück</a>
+				<a href='#W0' class='ui-btn' id='w1w0'>zurück</a>
 			</div>
 		</div>
-		<div id='W2' data-role='page' data-theme='b'>
+		<div id='W2' data-title='echte Pause' data-role='page' data-theme='b'>
 			<div data-role='main' class='ui-content'>
-				<a href='#W' class='ui-btn' id='w2e'>Ende</a>
-				<a href='#W' class='ui-btn' id='w2w'>zurück</a>
+				<a href='#W0' class='ui-btn' id='w2e'>Ende</a>
+				<a href='#W0' class='ui-btn' id='w2w0'>zurück</a>
 			</div>
 		</div>
 	</body>

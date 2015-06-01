@@ -72,24 +72,27 @@ div.ui-content {
 	min-height:441px !important;
 }
 /* "Unterbrechung" und "echte Pause" - Knopf höher */
-#ww1 {
+#ww0 {
+	padding: 55% inherit;
+}
+#w0w1 {
 	padding: 30% inherit;
 }
-#ww2 {
+#w0w2 {
 	padding: 15% inherit;
 }
-#wN {
+#w0N {
 	padding: 10% inherit;
 }
 #w1q {
 	padding: 45% inherit;
 }
-#w1w {
+#w1w0 {
 	padding: 10% inherit;
 }
 #w2e {
 	padding: 45% inherit;
 }
-#w2w {
+#w2w0 {
 	padding: 10% inherit;
 }
