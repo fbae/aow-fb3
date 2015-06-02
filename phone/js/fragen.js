@@ -203,7 +203,7 @@ define(function( require ) {
 
 			this.add(new Frage({id:'WD1', art:5, txt:'Heute habe ich jede Gelegenheit genutzt mich vor der Arbeit zu drücken.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'WD2', art:5, txt:'Heute habe ich darüber nachgedacht alles hinzuschmeißen.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
-			this.add(new Frage({id:'WD3', art:5, txt:'Heute habe ich mich weniger angestrengt, als von mir erwartet wurde.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
+			this.add(new Frage({id:'WD3', art:5, txt:'Heute habe ich mich weniger angestrengt, als von mir erwartet wird.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'WD4', art:5, txt:'Heute habe ich insgesamt mehr Zeit mit Pausen verbraucht, als mir zusteht.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'WD5', art:5, txt:'Heute habe ich bei der Arbeit viel Zeit mit Tagträumen verbracht.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 
@@ -215,7 +215,7 @@ define(function( require ) {
 
 			//Abends
 
-			this.add(new Frage({id:'OVERTI', art:715, txt:'Wie lange haben Sie heute nach der Beantwortung des letzten Fragebogens noch gearbeitet?', rTxt:'Stunden'}))
+			this.add(new Frage({id:'OVERTI', art:715, txt:'Wie lange haben Sie heute nach der Beantwortung des letzten Fragebogens noch gearbeitet? (in Stunden)', rTxt:'Stunden'}))
 			this.add(new Frage({id:'FORGET', art:5, txt:'Ich habe heute vergessen, bereits angefangende oder geplante Aufgaben zu erledigen.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'ERR', art:5, txt:'Heute habe ich Fehler während meiner Arbeitszeit gemacht.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 
@@ -241,7 +241,7 @@ define(function( require ) {
 			this.add(new Frage({id:'REC_M3', art:5, txt:'Nach der Arbeit tat ich Dinge, die mich herausfordern.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 			this.add(new Frage({id:'REC_M4', art:5, txt:'Nach der Arbeit tat ich etwas um meinen Horizont zu erweitern.', lTxt:'trifft gar nicht zu', rTxt:'trifft völlig zu'}));
 
-			this.add(new Frage({id:'DANGER_QUANT1', art:2, txt:'Haben Sie während Ihrer Arbeitszeit auf Pausen (kurze Pausen oder Mittagspausen) verzichtet?'}));
+			this.add(new Frage({id:'DANGER_QUANT1', art:2, txt:'Haben Sie während Ihrer Arbeitszeit auf Pausen (kurze Pausen oder Mittagspause) verzichtet?'}));
 			this.add(new Frage({id:'DANGER_QUANT2', art:2, txt:'Haben Sie heute länger gearbeitet?'}));
 			this.add(new Frage({id:'DANGER_QUAL1', art:2, txt:'Haben Sie heute in einem Arbeitstempo gearbeitet, das Sie langfristig nicht durchhalten können?'}));
 			this.add(new Frage({id:'DANGER_QUAL2', art:2, txt:'Haben Sie heute in einem Arbeitstempo gearbeitet, von dem Sie wissen, dass es Ihnen nicht gut tut?'}));
@@ -314,7 +314,7 @@ define(function( require ) {
 					{v:FView, f:['REC_M1', 'REC_M2', 'REC_M3', 'REC_M4']},
 					{v:FView, f:['DANGER_QUANT1', 'DANGER_QUANT2', 'DANGER_QUAL1']},
 					{v:FView, f:['DANGER_QUAL2', 'SMOK', 'ALC']},
-					{v:FView, f:['DRUG_RELAX1', 'DRUG_RELAX2'], heading:'Haben Sie heute Genussmittel / Substanzen (z.B. Alkohol, Koffein, Nikotin oder Medikamente) konsumiert, um '},
+					{v:FView, f:['DRUG_RELAX1', 'DRUG_RELAX2'], heading:'Haben Sie heute Genussmittel / Substanzen (z.B. Alkohol, Nikotin oder Medikamente) konsumiert, um '},
 					{v:FView, f:['DRUG_STIMU1', 'DRUG_STIMU2'], heading:'Haben Sie heute Genussmittel / Substanzen (z.B. Alkohol, Koffein, Nikotin oder Medikamente) konsumiert, um '},
 				],
 
