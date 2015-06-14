@@ -143,7 +143,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 
 			// initialisiere die Programm-Variablen ==================================
 			this.set('status','debug');
-			this.set('version','0.3');
+			this.set('version','0.4');
 			if ((this.get('status') == 'debug') && this.db)
 				//TODO tritt nicht ein, weil so früh this.db noch nicht zur Verfügung steht
 				this.db.transaction('log','readwrite').objectStore('log').clear();
@@ -187,6 +187,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 		log: function(obj) {
 			if (!this.db) {
 				setTimeout('fb3.log('+JSON.stringify(obj)+');',1000);
+				return undefined;
 			}
 			// obj ist entweder ein Objekt, dann sollte es das Attribut dt:Date() besitzen
 			// oder obj ist ein string, dann wird das Objekt hergestellt
@@ -204,7 +205,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 				console.warn('IDB - log -  mit obj: ',obj, ' Fehler: ',e);
 			};
 
-			if (this.get('status') == 'debug') console.debug('log: ' + logO.msg);
+			if (this.get('status') == 'debug') console.debug('log: ' + logO.msg,(_.has(logO.msg,'data')?logO.msg.data:''));
 
 		},
 
@@ -475,7 +476,34 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 									}
 									w2Arr.push(weObj);
 									weObj = new Object();
-								} // else: workend kommt vor dem workstart -> das kann nicht sein und wird ignoriert
+								} 
+								/* workend kommt vor dem workstart -> das kann nicht sein und wird ignoriert
+									ABER nach Verlust der Startzeiten 15-06-15 abgeändert in -> 
+									start wird dann automatisch ergänzt und mit Endzeit belegt
+									d.h. hier wird alles auf einmal gemacht
+								*/
+								else {
+									_.extend(weObj, {
+										'start': val[endStr],
+										'end':   val[endStr],
+										'device': val.device,
+										'person': val.person,
+										'art': artStr,
+										'sId': val.id,
+										'eId': val.id
+									});
+									// falls ein Iterrupt gesucht wird, den nachfolgenden Datensatz hinzufügen
+									if (artStr === 'inter') {
+										var nachfolgendeFragenObj = _.find(wArr,function(eintrag){ return eintrag.id == val.id+1; });
+										if (_.has(nachfolgendeFragenObj,'tag')) {
+											_.extend(weObj, nachfolgendeFragenObj);
+											weObj.nId = weObj.id;
+											delete weObj.id;
+										}
+									}
+									w2Arr.push(weObj);
+									weObj = new Object();
+								}
 							} else {
 								if (!_.isEmpty(weObj)) {
 									// weiteres workstart ohne workend trotzdem speichern
@@ -686,12 +714,12 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 			.onerror = function(e) { console.warn('Fehler: #W click (workstart) hat keinen IDB Eintrag hinterlassen ',e);};
 	});
 	// intStart in die Datenbank Tabelle W eintragen
-	$('#ww1').on('click',function(evt){
+	$('#w0w1').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
 			.put({'intstart':new Date(), 'device':fb3.get('device'), 'person':fb3.get('person')})
 			.onsuccess = function(e) {
 				// Eintrag wieder löschen, wenn auf zurück gegangen wird - e.target.result speichert die neu erstellte id
-				$('#w1w').on('click',null,e.target.result,function(evt) {
+				$('#w1w0').on('click',null,e.target.result,function(evt) {
 					fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW').delete(evt.data);
 				});
 			};
@@ -701,16 +729,16 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
 			.put({'intend':new Date(), 'device':fb3.get('device'), 'person':fb3.get('person')})
 			.onsuccess = function(){
-				$('#w1w').off('click');
+				$('#w1w0').off('click');
 			}
 	});
 	// brStart in die Datenbank Tabelle W eintragen
-	$('#ww2').on('click',function(evt){
+	$('#w0w2').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
 			.put({'break':new Date(), 'device':fb3.get('device'), 'person':fb3.get('person')})
 			.onsuccess = function(e) {
 				// wie oben - zurück-Button löscht den letzten Eintrag
-				$('#w2w').on('click',null,e.target.result,function(evt) {
+				$('#w2w0').on('click',null,e.target.result,function(evt) {
 					fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW').delete(evt.data);
 				});
 			};
@@ -720,7 +748,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
 			.put({'breakend':new Date(), 'device':fb3.get('device'), 'person':fb3.get('person')})
 			.onsuccess = function(){
-				$('#w2w').off('click');
+				$('#w2w0').off('click');
 			}
 	});
 	// WorkEnd in die Datenbank Tabelle W eintragen
