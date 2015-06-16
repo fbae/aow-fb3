@@ -205,7 +205,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 				console.warn('IDB - log -  mit obj: ',obj, ' Fehler: ',e);
 			};
 
-			if (this.get('status') == 'debug') console.debug('log: ' + logO.msg,(_.has(logO.msg,'data')?logO.msg.data:''));
+			if (this.get('status') == 'debug') console.debug('log: ' + logO.msg,(_.has(logO.msg,'data')?logO.msg.data:typeof logO.msg));
 
 		},
 
@@ -706,7 +706,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 		$('#save0DataButton').attr('title',this.get('count')+' Datensätze sind vorhanden.').trigger('mouseover');
 	});
 
-	// während der Arbeit - drei Fenster von Hand programmiert W, W1, W2
+	// während der Arbeit - Fenster von Hand programmiert W0, W, W1, W2
 	// WorkStart in die Datenbank Tabelle W eintragen
 	$('#W').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
@@ -752,7 +752,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 			}
 	});
 	// WorkEnd in die Datenbank Tabelle W eintragen
-	$('#wN').on('click',function(evt){
+	$('#w0N').on('click',function(evt){
 		fb3.db.transaction('antwortenW','readwrite').objectStore('antwortenW')
 			.put({'workend':new Date(), 'device':fb3.get('device'), 'person':fb3.get('person')})
 	});
