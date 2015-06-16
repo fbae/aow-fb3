@@ -41,7 +41,6 @@ define(function(require) {
 			});
 		},
 		speichern: function(evt) {
-console.debug('w speichern', fb3.get('antworten'));
 			/* scheinbar wird beim erneuten rendern auch der alte event noch ausgeführt,
 			 * deshalb wird er vor dem Speichern gelöscht -> zur nächsten Seite gegangen und
 			 * später beim erneuten Aufruf neu gesetzt.

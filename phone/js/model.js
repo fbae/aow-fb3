@@ -142,8 +142,28 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 			};  // Ende onUpgradeNeeded
 
 			// initialisiere die Programm-Variablen ==================================
-			this.set('status','debug');
-			this.set('version','0.4');
+			var self = this;
+			require( ['text!../fb3.appcache'],
+				function(appcache){
+					var foundArr;
+					if ((foundArr = /# v[0-9]+\.[0-9]+.*/g.exec(appcache)) !== null) {
+						var lineArr = foundArr[0].split('\t');
+						try	{self.set('status',lineArr[2]);}
+						catch(e) {self.set('status','debug');}
+						try	{
+							var verStr = lineArr[0].split(' ')[1];
+							if (self.get('version') !== verStr) self.set('version',verStr);
+						}
+						catch(e) {self.set('version','0.4.1');}
+						try	{
+							if (lineArr[1] !== self.get('appCacheDate')) self.set('appCacheDate', lineArr[1]);
+						}
+						catch(e) {};
+					} else {
+						self.set('status','debug');
+						self.set('version','0.4.2');
+					}
+				});
 			if ((this.get('status') == 'debug') && this.db)
 				//TODO tritt nicht ein, weil so früh this.db noch nicht zur Verfügung steht
 				this.db.transaction('log','readwrite').objectStore('log').clear();
@@ -205,7 +225,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 				console.warn('IDB - log -  mit obj: ',obj, ' Fehler: ',e);
 			};
 
-			if (this.get('status') == 'debug') console.debug('log: ' + logO.msg,(_.has(logO.msg,'data')?logO.msg.data:typeof logO.msg));
+			if (this.get('status') == 'debug') console.debug('log: ' + logO.msg,(_.has(logO,'data')?logO.msg.data:''));
 
 		},
 
@@ -616,6 +636,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 				var o = new Object();
 				o.status = this.get('status');
 				o.version = this.get('version');
+				o.appCacheDate = this.get('appCacheDate');
 				o.device = this.get('device');
 				o.tag = this.get('tag');
 				o.person = this.get('person');
@@ -635,7 +656,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 			console.warn('IDB - change:device - Einstellung für Device konnte nicht gespeichert werden.');
 		};
 		this.log('change:device ' + device);
-	});
+	}); 
 	fb3.on('change:art', function(model, art) {
 		this.db.transaction('einstellungen','readwrite').objectStore('einstellungen').put({
 			'key':'art',
