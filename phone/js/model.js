@@ -161,7 +161,7 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 						catch(e) {};
 					} else {
 						self.set('status','debug');
-						self.set('version','0.4.2');
+						self.set('version','0.4.3');
 					}
 				});
 			if ((this.get('status') == 'debug') && this.db)
@@ -451,10 +451,13 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 		},
 
 		antwortenWZusammenfassen: function(errA) {
-			/* überarbeite antwortenW, indem passende Einträge zusammengefasst werden,
+			/**
+			 * überarbeite antwortenW, indem passende Einträge zusammengefasst werden,
 			 * dort neu im Datenbankformat gespeichert werden und die passenden Einträge anschließend
 			 * gelöscht werden
-			 * cb - wird ohne Parameter aufgerufen, nachdem zusammengefasst wurde (callback)
+			 *
+			 * @param errA - alle Fehlermeldungen im Array
+			 * überholt:			 * cb - wird ohne Parameter aufgerufen, nachdem zusammengefasst wurde (callback)
 			 */
 			var tabName = 'antwortenW';
 			var self = this;
@@ -474,8 +477,22 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 					// alle Daten sind übertragen
 
 					// funktion deklarieren
+					/**
+					 * Zusammenfassung bestimmter Gruppen
+					 * Gruppen bestehen aus startStr und endStr
+					 * im Falle von art=inter müssen noch die nachfolgenden Antworten aus dem Fragebogen zusammengefasst
+					 * vereint werden
+					 */
 					var fasseZusammen = function(startStr, endStr, artStr) {
-						var w2Arr = new Array(); // hält die bearbeiteten und zu speichernden Datensätze
+						/**
+						 * @param wArr - wird implizit übergeben und enthält die gesamten Zeilen aus antwortenW
+						 *
+						 * @var w2Arr - wird gefüllt, enthält die wieder in antwortenW zu speichernden Datensätze
+						 * @var weArr - Ausschnitt aus wArr - nur start- und ende-Zeilen
+						 * @var weObj - die Zusammenstellung eines Datensatzes zusammengehöriger Daten, 
+						 *              wird in w2Arr abgespeichert
+						 */
+						var w2Arr = new Array();
 						var weArr = _.filter(wArr,function(eintrag){
 							return _.has(eintrag, startStr) ||  _.has(eintrag, endStr);
 						});
@@ -486,13 +503,18 @@ define([ 'jquery', 'underscore', 'backbone' ],function( $, _, Backbone ) {
 									// vervollständigen und abspeichern
 									weObj.end = val[endStr];
 									weObj.eId = val.id;
-									// falls ein Iterrupt gesucht wird, den nachfolgenden Datensatz hinzufügen
+									// falls ein Iterrupt gesucht wird, alle nachfolgenden Datensätze hinzufügen
 									if (artStr === 'inter') {
-										var nachfolgendeFragenObj = _.find(wArr,function(eintrag){ return eintrag.id == val.id+1; });
-										if (_.has(nachfolgendeFragenObj,'tag')) {
+										var wId = val.id + 1; // id in antwortenW
+										var nachfolgendeFragenObj = new Object();
+//console.debug('zusammef 1',wId,weObj);
+										while (nachfolgendeFragenObj = _.find(wArr,function(eintrag)
+													{ return ((eintrag.id == wId) && _.has(eintrag,'tag')); })) {
 											_.extend(weObj, nachfolgendeFragenObj);
+//console.debug('zusammef 2',wId,weObj);
 											weObj.nId = weObj.id;
 											delete weObj.id;
+											wId++;
 										}
 									}
 									w2Arr.push(weObj);

@@ -1,10 +1,10 @@
 CACHE MANIFEST
 
-# v0.4.15	16.6.2015	testing
+# v0.4.17	12.8.2015	production
 
 fb3.appcache
 index.html
-favicon.ico
+../favicon.ico
 
 css/fb3.css
 css/images/ajax-loader.gif
